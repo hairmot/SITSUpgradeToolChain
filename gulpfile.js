@@ -14,7 +14,11 @@ var autoprefix = new LessAutoprefix({ browsers: 'last 30 versions, ' + gulpConfi
 
 var reload = browserSync.reload;
 
-gulp.task('browserSync',['less_deploy'], function() {
+var flags = {
+	minify: false
+};
+
+gulp.task('browserSync', function() {
   browserSync.init({
     proxy: {
       target: gulpConfig.settings.remoteURL
@@ -26,8 +30,8 @@ gulp.task('browserSync',['less_deploy'], function() {
         fn: function(req, res, match) {
 
           //bring in all css in directory
-          localCssAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/non_minified/').map(css => 
-              '<link rel="stylesheet" type="text/css" href="'  + gulpConfig.localPath + '/non_minified/' + css + '"/>'
+          localCssAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/css/').map(css => 
+              '<link rel="stylesheet" type="text/css" href="'  + gulpConfig.localPath + '/css/' + css + '"/>'
             ).join('');
 
           //disable all old css assets
@@ -54,7 +58,7 @@ gulp.task('browserSync',['less_deploy'], function() {
   });
 });
 
-gulp.task('less_compile',function() {
+gulp.task('less_compile', function() {
 	gulp.src('./src/*.less')
 	.pipe(less(
 				{
@@ -63,10 +67,11 @@ gulp.task('less_compile',function() {
 				}
 		)
 	)
-	.pipe(gulp.dest('./dist/non_minified/'));
+	.pipe(gulp.dest('./dist/css/'));
+  reload();
 });
 
-gulp.task('less_minify',function() {
+gulp.task('less_minify', function() {
 	return gulp.src('./src/*.less')
 	.pipe(less(
 				{
@@ -76,13 +81,21 @@ gulp.task('less_minify',function() {
 		)
 	)
 	.pipe(minify({keepSpecialComments : 0}))	
-	.pipe(gulp.dest('./dist/minified/'));	
+	.pipe(gulp.dest('./dist/css/'));	
 });
-
-gulp.task('less_deploy',['less_minify', 'less_compile']);
 
 gulp.task('watch', function() {
-	gulp.watch('src/uol/**/*.less', ['less_deploy']); 
+	gulp.watch('src/uol/**/*.less', ['less_compile']); 
 });
 
-gulp.task('default',['watch', 'browserSync']);
+gulp.task('watch_minify', function() {
+	gulp.watch('src/uol/**/*.less', ['less_minify']); 
+});
+
+gulp.task('default', ['watch', 'less_compile', 'browserSync']);
+
+gulp.task('build', ['watch_minify','less_minify', 'browserSync']);
+
+gulp.task('minify', function () {
+  flags.minify = true;
+});
