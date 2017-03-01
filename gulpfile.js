@@ -7,28 +7,31 @@ var gulp = require('gulp'),
  browserSync = require('browser-sync').create(),
  runSequence = require('run-sequence');
  gulpConfig = require('./gulpConfig');
+ fs = require('fs');
 
 //will add css vendor prefixes for specified browsers
-var autoprefix = new LessAutoprefix({ browsers: 'last 30 versions', ...gulpConfig.autoPrefixVersions });
+var autoprefix = new LessAutoprefix({ browsers: 'last 30 versions, ' + gulpConfig.settings.autoPrefixVersions.join(',') });
 
 var reload = browserSync.reload;
 
 gulp.task('browserSync',['less_deploy'], function() {
   browserSync.init({
     proxy: {
-      target: gulpConfig.remoteURL
+      target: gulpConfig.settings.remoteURL
     },
     rewriteRules: [
       {
         // Inject Local CSS at the end of HEAD
         match: /<\/head>/i,
         fn: function(req, res, match) {
-          localCssAssets = '';
-          for (i=0;i<gulpConfig.localAssets.deploy.css.length;i++) {
-            localCssAssets += '<link rel="stylesheet" type="text/css" href="' + gulpConfig.localPath + '/' + gulpConfig.localAssets.deploy.css[i] + '">';
-          }
+
+          //bring in all css in directory
+          localCssAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/non_minified/').map(css => 
+              '<link rel="stylesheet" type="text/css" href="'  + gulpConfig.localPath + '/non_minified/' + css + '"/>'
+            ).join('');
+
           //disable all old css assets
-          localCssAssets += '<script>$(document).ready(function() {$("' + gulpConfig.localAssets.disable.css.map(link => 'link[href=\'' + link + '\']').join(',') + '").prop(\'disabled\', true);});</script>';
+          localCssAssets += '<script>$(document).ready(function() {$("' + gulpConfig.disableCss.map(link => 'link[href=\'' + link + '\']').join(',') + '").prop(\'disabled\', true);});</script>';
           return localCssAssets + match;
         }
       },
@@ -36,10 +39,9 @@ gulp.task('browserSync',['less_deploy'], function() {
         // Inject Local JS at the end of BODY
         match: /<\/body>/i,
         fn: function(req, res, match) {
-          localJsAssets = '';
-          for (i=0;i<gulpConfig.localAssets.deploy.js.length;i++) {
-            localJsAssets += '<script src="' + gulpConfig.localPath + '/' + gulpConfig.localAssets.deploy.js[i] + '"></script>';
-          }
+           localJsAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/js/').map(js => 
+              '<script type="text/javascript" src="'  + gulpConfig.localPath + '/js/' + js + '"></script>'
+            ).join('');
           return localJsAssets + match;
         }
       }
