@@ -23,4 +23,4 @@ Settings such as the url of the website to be proxied and compilation settings c
 
 To disable any currently active stylesheets on the proxied page, add the href of the link tag to gulpConfig.disableCss.
 
-Any files present in dist/js or dist/(minified/non_minified) will be sent to the browser.
+Any files present in dist/js or dist/(minified/non_minified) will be sent to the browser (not just your compiled less files - feel free to include js or plain old css)
