@@ -1,0 +1,216 @@
+/*additional styles for datatables and tablesaw within e:Vision Portal Content mode - most come from sv-table (default BootStrap styling)*/
+
+// Datatables
+
+.sv-portal-2-col {
+  //initialise classes so sv.css doesn't interfere
+  div.dataTables_wrapper > div.row > div,
+  div.dataTables_length {
+      text-align: inherit;      
+  }
+  
+  div.dataTables_filter {
+      text-align: right;
+  }
+
+  @media screen and (max-width: @screen-xs-max-2-column) {
+	div.dataTables_wrapper > div.row > div,
+	div.dataTables_length,
+	div.dataTables_filter {
+		text-align: center;
+	}
+  }
+}
+
+// Tablesaw
+
+//Note: If changing Tablesaw styles within a media query, equivalent changes may need to be made to the sv.css stylesheet
+
+.sv-portal-2-col {
+  @media only all {
+    .tablesaw-stack td,
+    .tablesaw-stack th {
+      text-align: left;
+      display: block;
+    
+      &.sv-text-right { //allow overriding of text alignment for things like financial values
+        text-align: right;
+      }
+      &.sv-text-center {
+        text-align: center;
+      }
+      &.sv-text-justify {
+        text-align: justify;
+      }
+    }
+
+    .tablesaw-stack tr {
+      clear: both;
+      display: table-row;
+    }
+
+    .tablesaw-stack td .tablesaw-cell-label,
+    .tablesaw-stack th .tablesaw-cell-label {
+      display: block !important;
+      width: 100%;
+      margin-top: @padding-base-vertical;
+      margin-bottom: @padding-base-vertical;
+    }
+
+    .tablesaw-stack th .tablesaw-cell-label-top,
+    .tablesaw-stack td .tablesaw-cell-label-top {
+      display: block;
+      width: 100%;
+      font-weight: normal;
+      margin-top: @padding-large-vertical;
+    }
+
+    .tablesaw-cell-label {
+      display: block;
+    }
+
+    .tablesaw-stack tbody th.group {
+      margin-top: -1px;
+    }
+
+    .tablesaw-stack th.group b.tablesaw-cell-label {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: @tablesaw-stack-max-2-column) {
+    .tablesaw-stack thead td,
+    .tablesaw-stack thead th {
+      display: none;
+    }
+
+    .tablesaw-stack tbody td,
+    .tablesaw-stack tbody th {
+      clear: left;
+      float: left;
+      width: 100%;
+      padding-top: 0;
+      padding-left: @grid-gutter-width / 2; //match stacked form 
+      padding-right: @grid-gutter-width / 2; //match stacked form
+      &.sv-text-right,
+      &.sv-text-center,
+      &.sv-text-justify {
+        text-align: left !important; //always force left align when stacked   
+      }
+    }
+
+    .tablesaw-cell-label {
+      vertical-align: top;
+    }
+
+    .tablesaw-cell-content {
+      display: block;
+      width: 100%;
+      
+      //Override certain input group styles to allow content to fill up cell
+      .sv-input-group-table {
+        display: block;
+      }
+    }
+    
+    //Override certain inline validation styles to allow content to fill up cell
+    .sv-table-has-feedback .tablesaw-cell-content .sv-form-group {
+      display: block;
+    }
+
+    .tablesaw-stack td:empty,
+    .tablesaw-stack th:empty {
+      display: none;
+    }
+  
+    .tablesaw-stack tbody tr td {
+      border-top: none;   
+    }
+  
+    .tablesaw-stack tbody tr {
+      border-bottom: 1px solid @table-border-color;
+    }
+  
+    .tablesaw-stack tbody tr:last-child {
+      border-bottom: none;
+    } 
+  }
+
+  @media (min-width: @tablesaw-stack-min-2-column) {
+    .tablesaw-stack tr {
+      display: table-row;
+    }
+
+    .tablesaw-stack td,
+    .tablesaw-stack th,
+    .tablesaw-stack thead td,
+    .tablesaw-stack thead th {
+      display: table-cell;
+      margin: 0;
+    }
+
+    .tablesaw-stack td .tablesaw-cell-label,
+    .tablesaw-stack th .tablesaw-cell-label {
+      display: none !important;
+    }
+  }
+
+  @media only all {
+    .tablesaw-swipe th.tablesaw-cell-hidden,
+    .tablesaw-swipe td.tablesaw-cell-hidden {
+      display: none;
+    }
+  }
+
+  @media only all {
+    .tablesaw-columntoggle th.tablesaw-priority-6,
+    .tablesaw-columntoggle td.tablesaw-priority-6,
+    .tablesaw-columntoggle th.tablesaw-priority-5,
+    .tablesaw-columntoggle td.tablesaw-priority-5,
+    .tablesaw-columntoggle th.tablesaw-priority-4,
+    .tablesaw-columntoggle td.tablesaw-priority-4,
+    .tablesaw-columntoggle th.tablesaw-priority-3,
+    .tablesaw-columntoggle td.tablesaw-priority-3,
+    .tablesaw-columntoggle th.tablesaw-priority-2,
+    .tablesaw-columntoggle td.tablesaw-priority-2 {
+      display: none;
+    }
+  }
+
+  @media (min-width: @screen-sm-min-2-column) {
+    .tablesaw-columntoggle th.tablesaw-priority-2,
+    .tablesaw-columntoggle td.tablesaw-priority-2 {
+      display: table-cell;
+    }
+  }
+
+  @media (min-width: @screen-md-min-2-column) {
+    .tablesaw-columntoggle th.tablesaw-priority-3,
+    .tablesaw-columntoggle td.tablesaw-priority-3 {
+      display: table-cell;
+    }
+
+    .tablesaw-columntoggle tbody td {
+      line-height: 2;
+    }
+  }
+
+  @media (min-width: @screen-lg-min-2-column) {
+    .tablesaw-columntoggle th.tablesaw-priority-4,
+    .tablesaw-columntoggle td.tablesaw-priority-4 {
+      display: table-cell;
+    }
+  }
+
+  @media only all {
+    .tablesaw-columntoggle th.tablesaw-cell-hidden,
+    .tablesaw-columntoggle td.tablesaw-cell-hidden {
+      display: none;
+    }
+
+    .tablesaw-columntoggle th.tablesaw-cell-visible,
+    .tablesaw-columntoggle td.tablesaw-cell-visible {
+      display: table-cell;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+/* Stylesheet used by the portal to override certain styles when using Content Mode container options with multiple columns on a page. */
+//The override styles adjust the breakpoints used in the media queries so that the styles are applied at smaller screensizes than normal.
+
+// Core variables and mixins (uses bootstrap mixins wherever possible - though there are a couple specifically for the portal)
+@import "less/bootstrap/variables.less"; //the main sv.css variables that form most of the content used
+
+@import "less/portal/variables.less"; //any additional variables for the portal
+@import "less/portal/mixins.less";
+
+// Override styles for the major affected components (Note: we only override commonly-used media queries to try and keep the override filesize down as much as possible)
+@import "less/portal/grid.less";
+@import "less/portal/forms.less";
+@import "less/portal/tables.less";
+@import "less/portal/buttons.less";
+@import "less/portal/panels.less";
+
+@import "less/portal/responsive-utilities.less";
+@import "less/portal/sits-tables.less";

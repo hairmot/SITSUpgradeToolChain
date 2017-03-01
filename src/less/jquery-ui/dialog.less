@@ -1,0 +1,101 @@
+/*jQuery UI dialog*/
+.ui-dialog { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0; 
+	width: 300px;
+	overflow: hidden;
+	outline: 0;
+	background-clip: padding-box;
+	background-color: @ui-widget-content-bg;
+	border: 1px solid @ui-widget-header-border;
+	border-radius: @border-radius-large;
+	.sv-shadow; //from sits.less
+	outline: medium none;
+
+	.ui-dialog-titlebar { 
+		position: relative;
+		border: none;
+		padding: 0 10px;
+		font-size: @ui-font-size-base;
+		text-decoration:none;
+		#ui-border-radius > .bottomRight ( 0px );
+		#ui-border-radius > .bottomLeft ( 0px );
+	}
+	.ui-dialog-title {
+		float: left;
+		background-color: @ui-widget-header-bg;
+		color: @ui-widget-header-color;
+		font-weight:normal;
+		margin-top:5px;
+		margin-bottom:5px;
+		padding:5px 0;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+	.ui-dialog-titlebar-close {
+		display: none; //Tribal - we don't use the close option so hide it always (avoids issue with Chosen)
+	}	
+	.ui-dialog-content { 
+		position: relative; 
+		border: 0; 
+		padding: 5px; 
+		background: none; 
+		overflow: auto; 
+	}
+	.ui-dialog-buttonpane {
+		text-align: left;
+		border-width: 1px 0 0 0;
+		background-image: none;
+		margin: .5em 0 0 0;
+		background-color: @ui-widget-footer-bg;
+		padding: 5px 15px 5px;
+		border-top: 1px solid @ui-widget-footer-border;
+		#ui-border-radius > .border( 0, 0, 6px, 6px );
+		margin-bottom: 0;
+	}
+	.ui-dialog-buttonpane .ui-dialog-buttonset {
+		float: right;
+		width: 100%;
+	}
+	.ui-dialog-buttonpane button { 
+		margin: .5em .4em .5em 0; 
+		cursor: pointer; 
+	}
+	.ui-resizable-se { 
+		width: 14px; 
+		height: 14px; 
+		right: 3px; 
+		bottom: 3px; 
+	}
+}
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+/***Dialog fixes for buttons - e.g. make last button primary**/
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    width: 100%;
+}
+
+.ui-dialog-buttonset .ui-button:last-child {
+    .ui-button-primary;
+}
+
+/*Any dialog differences for various breakpoints*/
+@media screen and (min-width: @screen-sm-min) {
+    .ui-dialog .ui-dialog-titlebar {
+	    padding: 5px 15px;
+	    font-size: @ui-font-size-large;
+	}
+	.ui-dialog .ui-dialog-content { 
+	    padding: 10px;
+	}
+	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	    float: right;
+		width: auto;
+	}
+	.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+	    width: auto;
+	    min-width: 9em; //ensure buttons are always a minimum width (regardless of text)
+	}
+}

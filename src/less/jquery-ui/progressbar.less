@@ -1,0 +1,40 @@
+/*jQuery UI progressbar*/
+.ui-progressbar {
+	height:2em;
+	border:0px;
+	overflow: hidden;
+	#ui-gradient > .vertical(@ui-progressbar-container-bg, @ui-progressbar-container-bg-light);
+	.ui-border-radius(4px);
+	.ui-box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
+	
+	text-align: left;
+	.ui-progressbar-value {
+		margin: 0px;
+		height:100%;
+		color: @ui-progressbar-value-color;
+		background-color: @ui-progressbar-value-bg;
+		.ui-box-sizing(border-box);
+	}
+	.ui-progressbar-overlay{
+		#ui-gradient > .vertical( @ui-link-color, @ui-link-hover-color );
+		background-size: 40px 40px;
+		.ui-animation( progress-bar-stripes 2s linear infinite);
+		width: 0%;
+		height: 100%;
+	}
+}
+
+/*Animation keyframes for indeterminate progressbar (IOS8 requires -webkit prefix)*/
+@keyframes progress-bar-stripes{
+	0% {width: 50%; margin-left: -50%;}
+	100% {width: 50%; margin-left: 150%;}
+}
+@-webkit-keyframes progress-bar-stripes{
+	0% {width: 50%; margin-left: -50%;}
+	100% {width: 50%; margin-left: 150%;}
+}
+
+.ui-progressbar-indeterminate .ui-progressbar-value {
+	background-image: none;
+	background-color: @ui-progressbar-container-bg;
+}

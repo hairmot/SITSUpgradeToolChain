@@ -1,0 +1,26 @@
+//
+// Grid system for Content Mode in the portal
+// --------------------------------------------------
+
+//initialise classes to override anything from the main sv.css stylesheet (so conflicting breakpoints don't cause problems)
+.reset-grid(sm,2);
+.reset-grid(md,2);
+.reset-grid(lg,2);
+
+// Extra small grid
+.make-grid(xs,2) !important;
+
+// Small grid
+@media (min-width: @screen-sm-min-2-column) {
+  .make-grid(sm,2) !important;
+}
+
+// Medium grid
+@media (min-width: @screen-md-min-2-column) {
+  .make-grid(md,2) !important;
+}
+
+// Large grid
+@media (min-width: @screen-lg-min-2-column) {
+  .make-grid(lg,2) !important;
+}

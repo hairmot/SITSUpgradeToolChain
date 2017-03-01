@@ -1,0 +1,360 @@
+//
+// Panels
+// --------------------------------------------------
+
+
+// Base class
+.sv-panel {
+  margin-bottom: @line-height-computed;
+  background-color: @panel-bg;
+  border: 1px solid transparent;
+  border-radius: @panel-border-radius;
+  .box-shadow(0 1px 1px rgba(0,0,0,.05));
+  
+  &.sv-disabled {  //disabled panel - styled similar to a disabled jQuery UI accordion
+    .opacity(.5);   
+  }
+  
+  //include highlight for parts of the panel (as used in Module Registration for example)
+  & > .sv-panel-body {
+    &.sv-panel-highlight {
+      background-color: @panel-highlight-bg;
+    }
+  }
+  & > .sv-panel-heading {
+    &.sv-panel-highlight {
+      background-color: darken(@panel-highlight-bg,10%);
+    }
+  }
+}
+
+// Panel contents
+.sv-panel-body {
+  padding: @panel-body-padding;
+  &:extend(.sv-clearfix all);
+}
+
+// Optional heading
+.sv-panel-heading {
+  padding: @panel-heading-padding;
+  border-bottom: 1px solid transparent;
+  .border-top-radius((@panel-border-radius - 1));
+
+  > .sv-dropdown .sv-dropdown-toggle {
+    color: inherit;
+  }
+}
+
+// Within heading, strip any `h*` tag of its default margins for spacing.
+.sv-panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: @panel-title-font-size;
+  color: inherit;
+
+  > a {
+    color: inherit;
+  }
+}
+
+// Optional footer (stays gray in every modifier class)
+.sv-panel-footer {
+  padding: @panel-footer-padding;
+  background-color: @panel-footer-bg;
+  border-top: 1px solid @panel-inner-border;
+  .border-bottom-radius((@panel-border-radius - 1));
+}
+
+
+// List groups in panels
+//
+// By default, space out list group content from panel headings to account for
+// any kind of custom content between the two.
+
+.sv-panel {
+  > .sv-list-group,
+  > .sv-panel-collapse > .sv-list-group {
+    margin-bottom: 0;
+
+    .sv-list-group-item {
+      border-width: 1px 0;
+      border-radius: 0;
+    }
+
+    // Add border top radius for first one
+    &:first-child {
+      .sv-list-group-item:first-child {
+        border-top: 0;
+        .border-top-radius((@panel-border-radius - 1));
+      }
+    }
+    // Add border bottom radius for last one
+    &:last-child {
+      .sv-list-group-item:last-child {
+        border-bottom: 0;
+        .border-bottom-radius((@panel-border-radius - 1));
+      }
+    }
+  }
+}
+// Collapse space between when there's no additional content.
+.sv-panel-heading + .sv-list-group {
+  .sv-list-group-item:first-child {
+    border-top-width: 0;
+  }
+}
+.sv-list-group + .sv-panel-footer {
+  border-top-width: 0;
+}
+
+// Tables in panels
+//
+// Place a non-bordered `.table` within a panel (not within a `.panel-body`) and
+// watch it go full width.
+
+.sv-panel {
+  > .sv-table,
+  > .sv-table-container > .sv-table,
+  > .sv-panel-collapse > .sv-table {
+    margin-bottom: 0;
+
+    caption {
+      padding-left: @panel-body-padding;
+      padding-right: @panel-body-padding;
+    }
+  }
+  // Add border top radius for first one
+  > .sv-table:first-child,
+  > .sv-table-container:first-child > .sv-table:first-child {
+    .border-top-radius((@panel-border-radius - 1));
+
+    > thead:first-child,
+    > tbody:first-child {
+      > tr:first-child {
+        border-top-left-radius: (@panel-border-radius - 1);
+        border-top-right-radius: (@panel-border-radius - 1);
+
+        td:first-child,
+        th:first-child {
+          border-top-left-radius: (@panel-border-radius - 1);
+        }
+        td:last-child,
+        th:last-child {
+          border-top-right-radius: (@panel-border-radius - 1);
+        }
+      }
+    }
+  }
+  // Add border bottom radius for last one
+  > .sv-table:last-child,
+  > .sv-table-container:last-child > .sv-table:last-child {
+    .border-bottom-radius((@panel-border-radius - 1));
+
+    > tbody:last-child,
+    > tfoot:last-child {
+      > tr:last-child {
+        border-bottom-left-radius: (@panel-border-radius - 1);
+        border-bottom-right-radius: (@panel-border-radius - 1);
+
+        td:first-child,
+        th:first-child {
+          border-bottom-left-radius: (@panel-border-radius - 1);
+        }
+        td:last-child,
+        th:last-child {
+          border-bottom-right-radius: (@panel-border-radius - 1);
+        }
+      }
+    }
+  }
+  > .sv-panel-body + .sv-table,
+  > .sv-panel-body + .sv-table-container,
+  > .sv-table + .sv-panel-body,
+  > .sv-table-container + .sv-panel-body {
+    border-top: 1px solid @table-border-color;
+  }
+  > .sv-table > tbody:first-child > tr:first-child th,
+  > .sv-table > tbody:first-child > tr:first-child td {
+    border-top: 0;
+  }
+  > .sv-table-bordered,
+  > .sv-table-container > .sv-table-bordered {
+    border: 0;
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th:first-child,
+        > td:first-child {
+          border-left: 0;
+        }
+        > th:last-child,
+        > td:last-child {
+          border-right: 0;
+        }
+      }
+    }
+    > thead,
+    > tbody {
+      > tr:first-child {
+        > td,
+        > th {
+          border-bottom: 0;
+        }
+      }
+    }
+    > tbody,
+    > tfoot {
+      > tr:last-child {
+        > td,
+        > th {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  > .sv-table-container {
+    border: 0;
+    margin-bottom: 0;
+  }
+}
+
+
+// Collapsable panels (aka, accordion)
+//
+// Wrap a series of panels in `.panel-group` to turn them into an accordion with
+// the help of our collapse JavaScript plugin.
+
+.sv-panel-group {
+  margin-bottom: @line-height-computed;
+
+  // Tighten up margin so it's only between panels
+  .sv-panel {
+    margin-bottom: 0;
+    border-radius: @panel-border-radius;
+
+    + .sv-panel {
+      margin-top: 5px;
+    }
+  }
+
+  .sv-panel-heading {
+    border-bottom: 0;
+
+    + .sv-panel-collapse > .sv-panel-body,
+    + .sv-panel-collapse > .sv-list-group {
+      border-top: 1px solid @panel-inner-border;
+    }
+  }
+
+  .sv-panel-footer {
+    border-top: 0;
+    + .sv-panel-collapse .sv-panel-body {
+      border-bottom: 1px solid @panel-inner-border;
+    }
+  }
+}
+
+
+// Contextual variations
+.sv-panel-default {
+  .panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
+}
+.sv-panel-primary {
+  .panel-variant(@panel-primary-border; @panel-primary-text; @panel-primary-heading-bg; @panel-primary-border);
+}
+.sv-panel-success {
+  .panel-variant(@panel-success-border; @panel-success-text; @panel-success-heading-bg; @panel-success-border);
+}
+.sv-panel-info {
+  .panel-variant(@panel-info-border; @panel-info-text; @panel-info-heading-bg; @panel-info-border);
+}
+.sv-panel-warning {
+  .panel-variant(@panel-warning-border; @panel-warning-text; @panel-warning-heading-bg; @panel-warning-border);
+}
+.sv-panel-danger {
+  .panel-variant(@panel-danger-border; @panel-danger-text; @panel-danger-heading-bg; @panel-danger-border);
+}
+
+//Tribal alternate panel styling - a third main styling for panels (this one includes the panel background too)
+.sv-panel-alternate {
+  .panel-variant(@panel-alternate-border; @panel-alternate-text; @panel-alternate-heading-bg; @panel-alternate-border; @panel-alternate-text; @panel-alternate-body-bg);
+
+  & > .sv-panel-body:first-child {
+    //as we're setting the background-color, ensure the border radius is set on the first item (so the colour doesn't bleed over the border)
+    .border-top-radius((@panel-border-radius - 1));
+  }
+}
+
+//Tribal variations when showing a form, table or button container within a panel
+.sv-panel .sv-form-container, .sv-panel .sv-table-container {
+  margin-bottom: 0;
+}
+
+//hide legends and captions if we're in a panel as the panel title normally covers this (but keep them screenreader compatible)
+.sv-panel .sv-form-container legend, .sv-panel .sv-table-container caption {
+  .sv-sr-only
+}
+
+//Adjust the spacing between the last form group and the bottom of a panel
+.sv-panel-body .sv-form-horizontal div.sv-form-group:last-child {
+  margin-bottom: @padding-base-vertical;
+}
+
+.sv-panel-footer .sv-btn-container .sv-btn {
+  margin-bottom: @padding-base-vertical;
+    
+  @media (min-width: @screen-sm-min) {
+    margin-bottom: 0;    
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .sv-panel-footer .sv-btn-container {
+    div:last-child {
+      margin-bottom: -@padding-base-vertical;
+    }
+    
+    &.sv-btn-container-inline {
+      margin-bottom: -@padding-base-vertical;
+    }
+  }
+}
+
+.sv-panel-footer .sv-btn-container + .sv-btn-container {
+  margin-top: @padding-base-vertical;
+}
+
+// Collapsible panels
+.sv-panel-collapsible {
+    > .sv-panel-heading {
+        cursor: pointer;
+        .sv-panel-icon {
+            float: right;
+        }
+    }
+    
+    &.sv-panel-collapsed {
+        > .sv-panel-heading {
+            border-bottom: 0;
+        }        
+    }
+}
+
+// Actions within a panel heading - e.g. buttons and links
+.sv-panel-heading-action {
+  > .sv-panel-title {
+    &:extend(.sv-clearfix all);
+  }
+  
+  .sv-panel-action-container {
+    float: right;
+    margin-top: @padding-xs-vertical;
+    margin-left: @padding-xs-horizontal;
+    
+    > .sv-btn {
+      margin-right: @padding-xs-horizontal;
+      &:extend(.sv-btn-xs); //always use smaller buttons when in a panel action heading
+    }
+  }
+}

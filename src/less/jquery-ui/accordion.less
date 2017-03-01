@@ -1,0 +1,67 @@
+/*jQuery UI accordion*/
+/* IE/Win - Fix animation bug - #4615 */
+.ui-accordion {
+	width: 100%;
+	margin-bottom: @ui-line-height-computed; /* match with bootstrap panel */	
+	.ui-accordion {
+		&-li-fix {
+			display: inline;
+		}
+		&-header-active {
+			border-bottom: 0 !important; 
+		}
+		&-header { 
+			display: block;
+			cursor: pointer;
+			position: relative;
+			margin-top: 2px;
+			padding: .5em .5em .5em .7em;
+			min-height: 0; /* support: IE7 */
+		}
+		&-icons {
+			padding-left: 2.2em;
+		}
+		&-noicons {
+			padding-left: .7em;
+		}
+		&-icons {
+			.ui-accordion-icons{
+				padding-left: 2.2em;
+			}
+		}
+		&-header {
+			.ui-accordion-header-icon {
+				position: absolute;	
+				left: .5em;
+				top: 50%;
+				margin-top: -8px;
+			}
+		}
+		&-content { 
+			padding: 1em 2.2em; 
+			border-top: 0; 
+			margin-top: -2px; 
+			position: relative; 
+			top: 1px; 
+			margin-bottom: 2px; 
+			overflow: auto; 
+			display: none; 			
+			
+			> .sv-table-container {
+			  /* fix padding issues for tables within an accordion */
+			  margin-left: -2.2em;
+			  margin-right: -2.2em;
+			  overflow-x: hidden;
+			}
+		}
+		&-content-active { 
+			display: block;
+		}
+	}
+	
+	.ui-accordion-header {
+	    margin-top: 0;
+        margin-bottom: 0;
+        font-size: @ui-accordion-header-font-size;
+	}
+}

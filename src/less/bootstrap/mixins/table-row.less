@@ -1,0 +1,56 @@
+// Tables
+
+.table-row-variant(@state; @background) {
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  .sv-table > thead > tr,
+  .sv-table > tbody > tr,
+  .sv-table > tfoot > tr {
+    > td.sv-@{state},
+    > th.sv-@{state},
+    &.sv-@{state} > td,
+    &.sv-@{state} > th {
+      background-color: @background;
+    }
+  }
+
+  // Hover states for `.table-hover`
+  // Note: this is not available for cells or rows within `thead` or `tfoot`.
+  .sv-table-hover > tbody > tr {
+    > td.sv-@{state}:hover,
+    > th.sv-@{state}:hover,
+    &.sv-@{state}:hover > td,
+    &:hover > .sv-@{state},
+    &.sv-@{state}:hover > th {
+      background-color: darken(@background, 5%);
+    }
+  }
+}
+
+.table-row-variant(@state; @background; @foreground) {
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  .sv-table > thead > tr,
+  .sv-table > tbody > tr,
+  .sv-table > tfoot > tr {
+    > td.sv-@{state},
+    > th.sv-@{state},
+    &.sv-@{state} > td,
+    &.sv-@{state} > th {
+      background-color: @background;
+      color: @foreground;
+    }
+  }
+
+  // Hover states for `.table-hover`
+  // Note: this is not available for cells or rows within `thead` or `tfoot`.
+  .sv-table-hover > tbody > tr {
+    > td.sv-@{state}:hover,
+    > th.sv-@{state}:hover,
+    &.sv-@{state}:hover > td,
+    &:hover > .sv-@{state},
+    &.sv-@{state}:hover > th {
+      background-color: darken(@background, 5%);
+    }
+  }
+}

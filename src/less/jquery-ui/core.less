@@ -1,0 +1,166 @@
+/*jQuery UI CSS framework*/
+
+/* Component containers
+----------------------------------*/
+
+.ui-widget {
+	font-family: @ui-font-family-sans-serif; 
+	font-size: @ui-font-size-base;
+	.ui-widget {
+		font-size: @ui-font-size-base;
+	}
+	input, select, textarea, button { 
+		font-family: @ui-font-family-sans-serif; 
+		font-size: inherit;
+	}
+		
+	.sv-input-group-btn > input,
+	.sv-input-group-btn > button {
+       /*Fix Bootstrap input groups within widgets*/
+	   font-size: @ui-font-size-base;
+	}
+}
+
+.ui-widget-content {
+	border: 1px solid @ui-widget-content-border;
+	background-color: @ui-widget-content-bg;
+	color: @ui-widget-content-color;
+}
+
+.ui-widget-header {
+	font-weight: bold;
+    background-color: @ui-widget-header-bg;
+    border-color: @ui-widget-header-border;
+	a {
+		color: @ui-widget-header-link-color;
+	}
+}
+
+/* Interaction states
+----------------------------------*/
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+   color: @ui-state-default-color;
+   background-color: @ui-state-default-bg;
+   font-weight: normal;
+   border: 1px solid @ui-state-default-border;
+}
+
+.ui-state-default {
+	a, a:link, a:visited {
+		color: @ui-state-default-link-color;
+		text-decoration: none;
+	}
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	color: @ui-state-hover-color;
+    background-color: @ui-state-hover-bg;
+    border-color: @ui-state-hover-border;
+	text-decoration: none;
+}
+
+.ui-state-hover {
+	a, a:hover, a:link, a:visited {
+		color: @ui-state-hover-link-color;
+		text-decoration: none;
+	}
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	border: 1px solid @ui-state-active-border;
+	font-weight: normal;
+	color: @ui-state-active-color;
+}
+
+.ui-state-active {
+	a, a:link, a:visited {
+		color: @ui-state-active-link-color;
+		text-decoration: none;
+	}
+}
+
+/*table striping used by jqGrid*/
+.ui-state-alternate {
+    background-color: @ui-state-alternate-bg;
+}
+
+/* Interaction Cues
+----------------------------------*/
+
+.ui-state-highlight,
+.ui-state-error,
+.ui-state-default {
+	border-width: 1px;
+	border-style: solid;
+	
+	p {
+	  font-size: @ui-font-size-base;
+	  font-weight: normal;
+	  line-height: 18px;
+	  margin:7px 15px;
+	}
+}
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	color: @ui-state-highlight-color;
+    background-color: @ui-state-highlight-bg;
+    border-color: @ui-state-highlight-border;
+    
+    a {
+      color: @ui-state-highlight-link-color; 
+    }
+}
+
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+	color: @ui-state-error-color;
+    background-color: @ui-state-error-bg;
+    border-color: @ui-state-error-border;
+    
+    a {
+      color: @ui-state-error-link-color;
+    }
+}
+
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+	color: @ui-state-error-text-color;
+}
+
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+	font-weight: bold;
+}
+
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+	.ui-opacity(.7);
+	font-weight: normal;
+}
+
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+	.ui-opacity(.5);
+	background-image: none;
+}
+
+.ui-state-disabled .ui-icon {
+	.ui-opacity(.5); /* For IE8 - See #6059 */
+}

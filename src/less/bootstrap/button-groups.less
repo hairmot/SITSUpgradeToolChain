@@ -1,0 +1,247 @@
+//
+// Button groups
+// --------------------------------------------------
+
+// Make the div behave like a button
+.sv-btn-group,
+.sv-btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle; // match .sv-btn alignment given font-size hack above
+  > .sv-btn {
+    position: relative;
+    float: left;
+    // Bring the "sv-active" button to the front
+    &:hover,
+    &:focus,
+    &:active,
+    &.sv-active {
+      z-index: 2;
+    }
+    &:focus {
+      // Remove focus outline when dropdown JS adds it after closing the menu
+      outline: 0;
+    }
+  }
+}
+
+// Prevent double borders when buttons are next to each other
+.sv-btn-group {
+  .sv-btn + .sv-btn,
+  .sv-btn + .sv-btn-group,
+  .sv-btn-group + .sv-btn,
+  .sv-btn-group + .sv-btn-group {
+    margin-left: -1px;
+  }
+}
+
+// Optional: Group multiple button groups together for a toolbar
+.sv-btn-toolbar {
+  margin-left: -5px; // Offset the first child's margin
+  &:extend(.sv-clearfix all);
+
+  .sv-btn-group,
+  .sv-input-group {
+    float: left;
+  }
+  > .sv-btn,
+  > .sv-btn-group,
+  > .sv-input-group {
+    margin-left: 5px;
+  }
+}
+
+.sv-btn-group > .sv-btn:not(:first-child):not(:last-child):not(.sv-dropdown-toggle) {
+  border-radius: 0;
+}
+
+// Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
+.sv-btn-group > .sv-btn:first-child {
+  margin-left: 0;
+  &:not(:last-child):not(.sv-dropdown-toggle) {
+    .border-right-radius(0);
+  }
+}
+// Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
+.sv-btn-group > .sv-btn:last-child:not(:first-child),
+.sv-btn-group > .sv-dropdown-toggle:not(:first-child) {
+  .border-left-radius(0);
+}
+
+// Custom edits for including btn-groups within btn-groups (useful for including dropdown buttons within a btn-group)
+.sv-btn-group > .sv-btn-group {
+  float: left;
+}
+.sv-btn-group > .sv-btn-group:not(:first-child):not(:last-child) > .sv-btn {
+  border-radius: 0;
+}
+.sv-btn-group > .sv-btn-group:first-child {
+  > .sv-btn:last-child,
+  > .sv-dropdown-toggle {
+    .border-right-radius(0);
+  }
+}
+.sv-btn-group > .sv-btn-group:last-child > .sv-btn:first-child {
+  .border-left-radius(0);
+}
+
+// On active and open, don't show outline
+.sv-btn-group .sv-dropdown-toggle:active,
+.sv-btn-group.sv-open .sv-dropdown-toggle {
+  outline: 0;
+}
+
+
+// Sizing
+//
+// Remix the default button sizing classes into new ones for easier manipulation.
+
+.sv-btn-group-xs > .sv-btn { &:extend(.sv-btn-xs); }
+.sv-btn-group-sm > .sv-btn { &:extend(.sv-btn-sm); }
+.sv-btn-group-lg > .sv-btn { &:extend(.sv-btn-lg); }
+
+
+// Split button dropdowns
+// ----------------------
+
+// Give the line between buttons some depth
+.sv-btn-group > .sv-btn + .sv-dropdown-toggle {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.sv-btn-group > .sv-btn-lg + .sv-dropdown-toggle {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+// The clickable button for toggling the menu
+// Remove the gradient and set the same inset shadow as the :active state
+.sv-btn-group.sv-open .sv-dropdown-toggle {
+  .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+
+  // Show no shadow for `.btn-link` since it has no other button styles.
+  &.sv-btn-link {
+    .box-shadow(none);
+  }
+}
+
+
+// Reposition the caret
+.sv-btn .sv-caret {
+  margin-left: 0;
+}
+// Carets in other button sizes
+.sv-btn-lg .sv-caret {
+  border-width: @caret-width-large @caret-width-large 0;
+  border-bottom-width: 0;
+}
+// Upside down carets for .dropup
+.sv-dropup .sv-btn-lg .sv-caret {
+  border-width: 0 @caret-width-large @caret-width-large;
+}
+
+
+// Vertical button groups
+// ----------------------
+
+.sv-btn-group-vertical {
+  > .sv-btn,
+  > .sv-btn-group,
+  > .sv-btn-group > .sv-btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // Clear floats so dropdown menus can be properly placed
+  > .sv-btn-group {
+    &:extend(.sv-clearfix all);
+    > .sv-btn {
+      float: none;
+    }
+  }
+
+  > .sv-btn + .sv-btn,
+  > .sv-btn + .sv-btn-group,
+  > .sv-btn-group + .sv-btn,
+  > .sv-btn-group + .sv-btn-group {
+    margin-top: -1px;
+    margin-left: 0;
+  }
+}
+
+.sv-btn-group-vertical > .sv-btn {
+  &:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  &:first-child:not(:last-child) {
+    border-top-right-radius: @border-radius-base;
+    .border-bottom-radius(0);
+  }
+  &:last-child:not(:first-child) {
+    border-bottom-left-radius: @border-radius-base;
+    .border-top-radius(0);
+  }
+}
+.sv-btn-group-vertical > .sv-btn-group:not(:first-child):not(:last-child) > .sv-btn {
+  border-radius: 0;
+}
+.sv-btn-group-vertical > .sv-btn-group:first-child:not(:last-child) {
+  > .sv-btn:last-child,
+  > .sv-dropdown-toggle {
+    .border-bottom-radius(0);
+  }
+}
+.sv-btn-group-vertical > .sv-btn-group:last-child:not(:first-child) > .sv-btn:first-child {
+  .border-top-radius(0);
+}
+
+
+// Justified button groups
+// ----------------------
+
+.sv-btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  > .sv-btn,
+  > .sv-btn-group {
+    float: none;
+    display: table-cell;
+    width: 1%;
+  }
+  > .sv-btn-group .sv-btn {
+    width: 100%;
+  }
+
+  > .sv-btn-group .sv-dropdown-menu {
+    left: auto;
+  }
+}
+
+
+// Checkbox and radio options
+//
+// In order to support the browser's form validation feedback, powered by the
+// `required` attribute, we have to "hide" the inputs via `clip`. We cannot use
+// `display: none;` or `visibility: hidden;` as that also hides the popover.
+// Simply visually hiding the inputs via `opacity` would leave them clickable in
+// certain cases which is prevented by using `clip` and `pointer-events`.
+// This way, we ensure a DOM element is visible to position the popover from.
+//
+// See https://github.com/twbs/bootstrap/pull/12794 and
+// https://github.com/twbs/bootstrap/pull/14559 for more information.
+
+[data-toggle="sv-buttons"] {
+  > .sv-btn,
+  > .sv-btn-group > .sv-btn {
+    input[type="radio"],
+    input[type="checkbox"] {
+      position: absolute;
+      clip: rect(0,0,0,0);
+      pointer-events: none;
+    }
+  }
+}

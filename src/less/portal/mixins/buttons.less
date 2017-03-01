@@ -1,0 +1,20 @@
+//Reset the inline button width classes for Portal Content mode
+
+.reset-inline-btn-width(@class, @multiplier: 1) {
+  .col(@index) when (@index = 1) { // initial
+    @item: ~".sv-portal-@{multiplier}-col .sv.btn-container-inline .sv-col-@{class}-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".sv-portal-@{multiplier}-col .sv.btn-container-inline .sv-col-@{class}-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      //reset to full width by default
+      width: percentage(1 - (3/100)); //fallback for browsers that do not support calc (just include a 3% gap as lee-way)
+      width: ~"calc("percentage(1)~" - "(@grid-gutter-width)~")"; //use CSS calc to determine width minus padding used for spacing
+    }
+  }
+  .col(1); // kickstart it
+}

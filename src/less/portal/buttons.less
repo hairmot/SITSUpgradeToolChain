@@ -1,0 +1,38 @@
+//
+// Buttons in Portal Content mode
+// --------------------------------------------------
+
+//initialise classes to override anything from the main sv.css stylesheet (so conflicting breakpoints don't cause problems)
+.reset-inline-btn-width(sm,2);
+.reset-inline-btn-width(md,2);
+.reset-inline-btn-width(lg,2); 
+
+.sv-portal-2-col {
+  .sv-btn-container-inline {
+    .loop-inline-btn-widths(@grid-columns,xs) !important; //call mix-in to build  
+  }
+}
+
+@media (min-width: @screen-sm-min-2-column) {
+  .sv-portal-2-col {
+    .sv-btn-container-inline {
+      .loop-inline-btn-widths(@grid-columns,sm) !important;   
+    }
+  }
+}
+
+@media (min-width: @screen-md-min-2-column) {
+  .sv-portal-2-col {
+    .sv-btn-container-inline {
+      .loop-inline-btn-widths(@grid-columns,md) !important;   
+    }
+  }
+}
+
+@media (min-width: @screen-lg-min-2-column) {
+  .sv-portal-2-col {
+    .sv-btn-container-inline {
+      .loop-inline-btn-widths(@grid-columns,lg) !important;   
+    }
+  }
+}

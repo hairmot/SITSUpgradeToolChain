@@ -1,0 +1,47 @@
+.sv-media {
+  // Proper spacing between instances of .media
+  margin-top: 15px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.sv-media-right,
+.sv-media > .sv-pull-right {
+  padding-left: 10px;
+}
+
+.sv-media-left,
+.sv-media > .sv-pull-left {
+  padding-right: 10px;
+}
+
+.sv-media-left,
+.sv-media-right,
+.sv-media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.sv-media-middle {
+  vertical-align: middle;
+}
+
+.sv-media-bottom {
+  vertical-align: bottom;
+}
+
+// Reset margins on headings for tighter default spacing
+.sv-media-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+// Media list variation
+//
+// Undo default ul/ol styles
+.sv-media-list {
+  padding-left: 0;
+  list-style: none;
+}

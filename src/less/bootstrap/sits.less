@@ -1,0 +1,311 @@
+/* Tribal bootstrap-related styles */
+
+.sv-navbar-nav a:link{
+  text-decoration: none;
+}
+
+.sv-h1-small {
+  font-size: @font-size-h3;
+}
+
+/* Third party authentication styles */
+
+.sv-btn-login {
+  height: 70px;
+  background-size: 40px 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sv-btn-login-facebook {
+  background-color: #3b589c; 
+  background-image: url("../images/icons/facebook.png");
+}
+
+.sv-btn-login-google {
+  background-color: #da4735; 
+  background-image: url("../images/icons/googleplus.png");
+}
+
+.sv-btn-login-microsoft {
+  background-color: #fff; 
+  background-image: url("../images/icons/microsoft.png");
+}
+
+.sv-btn-login-linkedin{
+  background-color: #0274b3; 
+  background-image: url("../images/icons/linkedin.png");
+}
+
+.sv-btn-login-weibo {
+  background-color: #fff; 
+  background-image: url("../images/icons/weibo.png");
+}
+
+.sv-btn-login-salesforce {
+  background-color: #319cd6; 
+  background-image: url("../images/icons/salesforce.png");
+}
+
+/*!
+ * Header and Footer classes
+ */
+.sv-header-main {
+  margin-bottom: 1em; /*include spacing before main content*/
+}
+
+@media (min-width: @screen-sm-min) {
+  .sv-header-main {
+    margin-bottom: 3em; /*include spacing before main content (to avoid overlaying "Logout" section)*/
+  }
+  .sv-page-content {
+      min-height: 30em; /*force footer down the page by at least this much (for shorter screens)*/
+  }
+}
+ 
+.sv-header-image {
+  height: @header-image-height;
+  width: @header-image-width;
+  background: url("@{images-path}@{header-image-name}") center center no-repeat;
+}
+
+.sv-header-text {
+  background-color: @header-bg-color;
+  position: relative;
+  padding: 0 @header-text-padding-horizontal @header-text-padding-vertical @header-text-padding-horizontal;
+  right: @header-text-padding-vertical;
+  font-size: @font-size-small;
+  float: right;
+}
+
+.sv-header-text, .sv-header-text a, .sv-header-text a:hover, .sv-header-text a:link, .sv-header-text a:visited , .sv-header-text a:active  {
+  color: @header-color;
+}
+
+.sv-header-text a {
+  text-decoration: underline;
+  text-align: right;
+}
+
+.sv-footer {
+  background-color: @header-bg-color;
+}
+
+.sv-footer-text {
+  text-align: right;
+  padding: @header-text-padding-vertical @header-text-padding-horizontal;
+  font-size: @font-size-small;
+}
+
+.sv-footer-text, .sv-footer-text a, .sv-footer-text a:hover, .sv-footer-text a:link, .sv-footer-text a:visited , .sv-footer-text a:active    {
+  color: @header-color;
+}
+
+.sv-footer-text a {
+  text-decoration: underline;
+}
+
+//Used for floating panels that appear above most other content (which isn't a popup)
+.sv-floating-content {
+  z-index: @zindex-floating-panel;
+}
+
+//Used for fixed content
+.sv-fixed-content {
+  position: fixed;
+}
+
+/*Styles for suggestion boxes (like Grade Suggestion in Mark Entry or Dynamic Listbox) */
+.sv-suggest-box { //outer container
+  position: absolute;
+  margin: 0;
+  z-index: @zindex-suggest-box;
+  background-color: @suggest-bg;
+  border: 1px solid @suggest-border-color;
+  border-radius: @suggest-border-radius;
+  .sv-shadow;
+ 
+  .sv-suggest-box-content { //content container
+    padding: 1px;
+  }
+  
+  .sv-suggest-box-overflow {
+    min-height: 3em; //stop the suggest box shrinking too much
+    width: 30em;
+    min-width: 20em;  
+  }
+  
+  .sv-list-group {
+    > .sv-list-group-item {
+      border-left: none;
+      border-right: none;
+      border-radius: none;
+    }
+       
+    > .sv-list-group-item:first-child {
+      border-top: none;
+    }
+       
+    > .sv-list-group-item:last-child {
+      border-bottom: none;
+    }       
+  }
+  
+  .sv-suggest-box-overflow { //overflow container (inside content container)
+    overflow: auto;
+  }
+  
+  .sv-list-group {
+    margin: 0;   
+  }
+  
+  .sv-suggest-box-code-col {
+    font-weight: bold;
+    float: left;
+    width: 20%;
+  }
+  
+  .sv-suggest-box-name-col {
+    float: left;
+    width: 50%;
+    margin-top: 1px;
+    .sv-small;
+  }
+  
+  .sv-suggest-box-snam-col {
+    float: left;
+    width: 30%;
+    margin-top: 1px;
+    .sv-small;
+  }
+  
+  .sv-suggest-box-details { //used for the second line of the box (if available)
+    .sv-small;
+  }
+  
+  .sv-badge {
+    white-space: normal;
+  }
+}
+
+input.sv-suggest-box-input-icon.dmu_enabled, input.sv-suggest-box-input-icon.dmu_disabled { //used by Dynamic Listbox when showing icon rather than code
+  display: inline;
+  padding-left: 20px;
+  width: 0;
+  margin-right: 10px;
+  background: url("@{images-path}search.png") no-repeat center;
+  color: transparent;  
+}
+
+//Box-shadow class - used for consistent shadowing in certain components (such as Dynamic listbox)
+.sv-shadow {
+  .box-shadow(0 6px 12px rgba(0,0,0,.175));
+}
+
+//Mandatory fields class - used on certain screens to denote mandatory fields (prior to any error validation)
+.sv-mandatory {
+  background-color: @mandatory-bg;
+}
+
+//Word Wrap class - used when you want to specifically specify word-wrap (when dealing with long values like email addresses for example)
+.sv-word-wrap {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+// styles for tiled containers 
+.sv-tiled-container {
+  padding-left: 15px;
+  .sv-tiled-col a{
+	text-decoration:none;
+  }  
+  .sv-tiled-col a:hover{
+	text-decoration:none;
+  }
+  .sv-tiled-col{
+    padding-left:0px;
+  }
+}
+.sv-panel>.sv-tiled-container {
+  margin-top: 10px;
+}
+.sv-tiled-link-text{
+  padding-top:10px;
+}
+.sv-tiled-cop{
+  color:@tile-font-color;
+  height: @tile-height;
+  margin-bottom: 10px;   
+  padding: @padding-large-horizontal @header-text-padding-vertical   ;  
+  width:100%;
+  border-radius:@border-radius-base;
+  text-align: center;
+  cursor:pointer;
+  overflow:hidden;
+  .tiled-icon-large{
+    font-size:@font-size-large*2.5;
+  }
+  .tiled-icon-small{
+    font-size:@font-size-large*2;
+  }
+}
+.sv-tiled-cop-a{
+  background-color: @tile-a-color;
+  &:hover{
+    background-color: @tile-a-color-hover;	
+  }  
+}  
+.sv-tiled-cop-b{
+  background-color:  @tile-b-color;
+  &:hover{
+    background-color: @tile-b-color-hover;	
+  }  
+}  
+.sv-tiled-cop-c {
+  background-color: @tile-c-color;
+  &:hover{
+    background-color: @tile-c-color-hover;	
+  }  
+}  
+.sv-tiled-cop-d{
+  background-color: @tile-d-color;
+  &:hover{
+    background-color: @tile-d-color-hover;	
+  } 
+  &:focus{
+    background-color: @tile-d-color-hover;	
+  }    
+}  
+.sv-tiled-cop-e {
+  background-color: @tile-e-color;
+  &:hover{
+    background-color: @tile-e-color-hover;	
+  }  
+}  
+.sv-tiled-cop-f {
+  background-color: @tile-f-color;
+  &:hover{
+    background-color: @tile-f-color-hover;	
+  }  
+}  
+.sv-tiled-col{
+  a:focus>.sv-tiled-cop-a{
+    background-color: @tile-a-color-hover;	  
+  }      
+  a:focus>.sv-tiled-cop-b{
+    background-color: @tile-b-color-hover;	  
+  }      
+  a:focus>.sv-tiled-cop-c{
+    background-color: @tile-c-color-hover;	  
+  }      
+  a:focus>.sv-tiled-cop-d{
+    background-color: @tile-d-color-hover;	  
+  }      
+  a:focus>.sv-tiled-cop-e{
+    background-color: @tile-e-color-hover;	  
+  }      
+  a:focus.sv-tiled-cop-f{
+    background-color: @tile-f-color-hover;	  
+  }
+}    
+    
+

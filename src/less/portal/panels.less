@@ -1,0 +1,27 @@
+//
+// Panels in Portal Content mode
+// --------------------------------------------------
+
+// Adjust padding around use of buttons in panels (based on styles from main sv.css version of panels.less)
+
+.sv-portal-2-col {
+  .sv-panel-footer .sv-btn-container .sv-btn {
+    margin-bottom: @padding-base-vertical !important;
+    
+    @media (min-width: @screen-sm-min-2-column) {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  @media (max-width: @screen-xs-max-2-column) {
+    .sv-panel-footer .sv-btn-container {
+      div:last-child {
+        margin-bottom: -@padding-base-vertical !important;
+      }
+    
+      &.sv-btn-container-inline {
+        margin-bottom: -@padding-base-vertical !important;
+      }
+    }
+  }
+}

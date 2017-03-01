@@ -1,0 +1,192 @@
+/*jQuery UI button*/
+.ui-button {
+	cursor: pointer;
+	display: inline-block;
+	padding: @ui-padding-base-vertical @ui-padding-base-horizontal;
+  	margin-bottom: 0;
+	font-size: @ui-font-size-base;
+	font-weight: normal;
+	line-height: @ui-line-height-base;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	.ui-user-select(none);
+	&:focus {
+	  .ui-tab-focus()
+	}
+	&:focus, &:hover {
+		text-decoration: none;
+	}
+}
+
+.ui-btn-large{
+	.sv-btn-lg;
+}
+
+.ui-btn-small{
+	.sv-btn-sm;
+}
+
+.ui-btn-mini {
+	.sv-btn-xs;
+}
+
+.ui-btn-block {
+	.sv-btn-block;
+}
+
+.ui-btn-block + .ui-btn-block {
+    margin-top: 5px;
+}
+
+input[type="submit"], input[type="reset"], input[type="button"]{
+	&.ui-btn-block{
+		width: 100%;
+	}
+}
+
+.ui-button-text-icon-primary 
+.ui-button-icon-primary {
+    float:left;
+}
+
+.ui-button-text-icon-primary {
+    padding:2px 7px 3px;
+}
+
+.ui-button {
+	.ui-button-variant(@ui-btn-default-color, @ui-btn-default-bg, @ui-btn-default-border);
+}
+
+.ui-button-primary {
+	.ui-button-variant(@ui-btn-primary-color, @ui-btn-primary-bg, @ui-btn-primary-border);
+}
+.ui-button-warning {
+	.ui-button-variant(@ui-btn-warning-color, @ui-btn-warning-bg, @ui-btn-warning-border);
+}
+.ui-button-info {
+	.ui-button-variant(@ui-btn-info-color, @ui-btn-info-bg, @ui-btn-info-border);
+}
+.ui-button-danger {
+	.ui-button-variant(@ui-btn-danger-color, @ui-btn-danger-bg, @ui-btn-danger-border);
+}
+.ui-button-inverse {
+	.ui-button-variant(@ui-btn-inverse-color, @ui-btn-inverse-bg, @ui-btn-inverse-border);
+}
+.ui-button-success {
+	.ui-button-variant(@ui-btn-success-color, @ui-btn-success-bg, @ui-btn-success-border);
+}
+.ui-button-error {
+	.ui-button-variant(@ui-btn-default-color, @ui-btn-danger-bg, @ui-btn-danger-border);
+}
+
+/* to make room for the icon, a width needs to be set here */
+.ui-button-icon-only {
+	width: 2.2em;
+}
+
+/* button elements seem to need a little more width */
+.ui-button-icons-only {
+	width: 3.4em;
+}
+
+button.ui-button-icons-only {
+	width: 3.7em;
+}
+
+.ui-button-text-icon-primary .ui-button-icon-primary.ui-icon {
+    margin-top:5px;
+}
+/*button text element */
+
+.ui-button .ui-button-text {
+	display: block;
+	line-height: @ui-line-height-base;
+}
+
+.ui-button-icon-only .ui-button-text,
+.ui-button-icons-only .ui-button-text {
+	padding: .4em;
+	text-indent: -9999px;
+	display:none; /*tempfix*/
+}
+
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: .4em 1em .4em 2.1em;
+}
+
+.ui-button-text-icon-secondary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: .4em 2.1em .4em 1em;
+}
+
+.ui-button-text-icons .ui-button-text {
+	padding-left: 2.1em;
+	padding-right: 2.1em;
+}
+
+/* no icon support for input elements, provide padding by default */
+input.ui-button {
+	padding: .4em 1em;
+}
+
+/*button icon element(s) */
+.ui-button-icon-only .ui-icon,
+.ui-button-text-icon-primary .ui-icon,
+.ui-button-text-icon-secondary .ui-icon,
+.ui-button-text-icons .ui-icon,
+.ui-button-icons-only .ui-icon {
+    margin-bottom: 0;
+    margin-top: 0;
+    top: 50%;
+}
+
+.ui-button-icon-only .ui-icon {
+	left: 50%;
+	/* chrome margin*/
+	margin-left: -8px;
+	/* firefox margin*/
+    margin-right: -6px;
+}
+
+.ui-button-text-icon-primary, .ui-button-text-icons, .ui-button-icons-only {
+	.ui-button-icon-primary {
+		left: .5em;
+	}
+}
+
+.ui-button-text-icon-secondary, .ui-button-text-icons, .ui-button-icons-only {
+	.ui-button-icon-secondary{
+		right: .5em;
+	}
+}
+
+.ui-button-text-icons, .ui-button-icons-only {
+	.ui-button-icon-secondary{
+		right: .5em;
+	}
+}
+
+/*Styling for icon with button - when using Button widget*/
+.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icon-secondary .ui-button-text {
+    color: @ui-btn-default-color;    
+}
+
+/*button sets*/
+
+.ui-buttonset {
+	margin-right: 7px;
+
+	.ui-button {
+		margin-left: 0;
+		margin-right: -.4em;
+	}
+}
+
+/* reset extra padding in Firefox */
+button.ui-button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+} 

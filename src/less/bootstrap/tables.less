@@ -1,0 +1,353 @@
+//
+// Tables
+// --------------------------------------------------
+
+
+table {
+  background-color: @table-bg;
+}
+caption {
+  padding-top: @table-cell-padding;
+  padding-bottom: @table-cell-padding;
+  color: @text-muted;
+  text-align: left;
+}
+th {
+  text-align: left;
+}
+
+
+// Baseline styles
+
+.sv-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: @line-height-computed;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: @table-cell-padding;
+        line-height: @line-height-base;
+        vertical-align: top;
+        border-top: 1px solid @table-border-color;
+      }
+      
+      &.sv-disabled { //mark a row as disabled (used by Mod Reg for example)
+        th,
+        td {
+          color: @table-disabled-color;            
+        }
+      }
+    }
+  }
+  // Bottom align for column headings
+  > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid @table-border-color;
+  }
+  // Remove top border from thead by default
+  > caption + thead,
+  > colgroup + thead,
+  > thead:first-child {
+    > tr:first-child {
+      > th,
+      > td {
+        border-top: 0;
+      }
+    }
+  }
+  // Account for multiple tbody instances
+  > tbody + tbody {
+    border-top: 2px solid @table-border-color;
+  }
+
+  // Nesting
+  .sv-table {
+    background-color: @body-bg;
+  }
+}
+
+
+// Condensed table w/ half padding
+
+.sv-table-condensed {
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: @table-condensed-cell-padding;
+      }
+    }
+  }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.sv-table-bordered {
+  border: 1px solid @table-border-color;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 1px solid @table-border-color;
+      }
+    }
+  }
+  > thead > tr {
+    > th,
+    > td {
+      border-bottom-width: 2px;
+    }
+  }
+}
+
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.sv-table-striped {
+  > tbody > tr:nth-child(odd) {
+    background-color: @table-bg-accent;
+  }
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.sv-table-hover {
+  > tbody > tr:hover {
+    background-color: @table-bg-hover;
+  }
+}
+
+
+// Table cell sizing
+//
+// Reset default table behavior
+
+table col[class*="sv-col-"] {
+  position: static; // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
+  float: none;
+  display: table-column;
+}
+table {
+  td,
+  th {
+    &[class*="sv-col-"] {
+      position: static; // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
+      float: none;
+      display: table-cell;
+    }
+  }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// Generate the contextual variants
+.table-row-variant(active; @table-bg-active; @table-color-active);
+.table-row-variant(success; @state-success-bg);
+.table-row-variant(info; @state-info-bg);
+.table-row-variant(warning; @state-warning-bg);
+.table-row-variant(danger; @state-danger-bg);
+
+
+// Responsive tables
+//
+// Wrap your tables in `.table-responsive` and we'll make them mobile friendly
+// by enabling horizontal scrolling. Only applies <768px. Everything above that
+// will display normally.
+
+.sv-table-responsive {
+  overflow-x: auto;
+  min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+
+  @media screen and (max-width: @screen-xs-max) {
+    width: 100%;
+    margin-bottom: (@line-height-computed * 0.75);
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid @table-border-color;
+
+    // Tighten up spacing
+    > .sv-table {
+      margin-bottom: 0;
+
+      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    // Special overrides for the bordered tables
+    > .sv-table-bordered {
+      border: 0;
+
+      // Nuke the appropriate borders so that the parent can handle them
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th:first-child,
+          > td:first-child {
+            border-left: 0;
+          }
+          > th:last-child,
+          > td:last-child {
+            border-right: 0;
+          }
+        }
+      }
+
+      // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+      // chances are there will be only one `tr` in a `thead` and that would
+      // remove the border altogether.
+      > tbody,
+      > tfoot {
+        > tr:last-child {
+          > th,
+          > td {
+            border-bottom: 0;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+//make form legend and sv-table captions similar
+.sv-table caption {
+  width: 100%;
+  padding: 0;
+  margin-bottom: @line-height-computed;
+  font-size: (@font-size-base * 1.5);
+  line-height: inherit;
+  color: @legend-color;
+  border: 0;
+  border-bottom: 1px solid @legend-border-color;
+}
+
+//style the main table container
+.sv-table-container {
+  margin-bottom: (@padding-base-vertical * 2);
+}
+
+/*input styles and widths for form-controls when used within a table*/
+.sv-table .sv-form-control {
+  display: inline;
+}
+
+.sv-table input.sv-form-control-xs {
+  width: 6em;
+}
+
+.sv-table input.sv-form-control-sm {
+  width: 12em;
+}
+
+.sv-table input.sv-form-control-md {
+  width: 24em;
+}
+
+.sv-table input.sv-form-control-lg {
+  width: 48em;
+}
+
+/*default table column widths - for use when some width control is absolutely necessary*/
+.sv-table th.sv-table-col-xs {
+  width: 6em;   
+}
+
+.sv-table th.sv-table-col-sm {
+  width: 9em;
+}
+
+.sv-table th.sv-table-col-md {
+  width: 12em;
+}
+
+.sv-table th.sv-table-col-lg {
+  width: 18em;
+}
+
+//reset widths for smaller screens - e.g. when using stack mode
+@media (max-width: @screen-xs-max) {
+  .sv-table {
+    input.sv-form-control-xs,
+    input.sv-form-control-sm,
+    input.sv-form-control-md,
+    input.sv-form-control-lg {
+      width: 100%;
+    }
+  }
+}
+
+// e:Vision inline errors within a table, and based on a subset of sv-form-inline
+.sv-table-has-feedback {
+  .sv-form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  .sv-form-control {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .sv-input-group {
+    display: inline-table;
+    vertical-align: middle;
+  }
+
+  // Re-override the feedback icon and adjust padding to better fit in tables (where other padding is less).
+  &.sv-has-feedback,
+  .sv-has-feedback {
+    .sv-form-control {
+      padding-right: (@input-height-base * 0.9);
+    }      
+    .sv-form-control-feedback {
+      top: 0;
+    }
+  }
+}
+
+// Handle financial totals lining up
+.sv-financial-container {
+    .sv-financial-total {
+        padding: @table-cell-padding;
+        font-weight: bold;
+        
+        @media (max-width: @screen-xs-max) {
+            font-weight: normal;
+        }
+    }
+    .sv-financial-label {
+        font-weight: bold;
+    }
+}

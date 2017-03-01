@@ -1,0 +1,223 @@
+
+// Grays
+// -------------------------
+@ui-black: @gray-base;
+@ui-gray-darker: @gray-darker;
+@ui-gray-dark: @gray-dark;
+@ui-gray: @gray;
+@ui-gray-light: @gray-light;
+@ui-gray-lighter: @gray-lighter;
+@ui-white: #fff;
+
+
+// Brand colors
+// -------------------------
+@ui-brand-primary:	@brand-primary;
+@ui-brand-success:	@brand-success;
+@ui-brand-warning:	@brand-warning;
+@ui-brand-danger:	@brand-danger;
+@ui-brand-info:		@brand-info;
+
+@ui-blue-dark: #003f81;
+@ui-blue: #003f81;
+@ui-blue-light: #0069D6;
+
+@ui-green-light: #62c462;
+@ui-green: #51A351;
+@ui-green-dark: #3d773d;
+
+@ui-red-lighter: #ee5f5b;
+@ui-red-light: #c43c35;
+@ui-red: #cd0a0a;
+@ui-red-dark: #882a25;
+
+@ui-yellow-lighter: #fceec1;
+@ui-yellow-light: #eedc94;
+@ui-yellow: #e4c652;
+
+//numeric (i.e. without the hash) equivalents of some of the main colours, which can be used to find the correct icons to use
+//Note: images files only exist for an extremely limited number of colours, so files in ..\images\ may need to be added to or these values adjusted
+@ui-gray-darker-num : 222222;
+@ui-gray-num: 454545;
+@ui-brand-primary-num: 428bca;
+@ui-brand-warning-num: f0ad4e;
+@ui-body-bg-num: ffffff;
+@ui-gray-light-num: 888888;
+
+// Scaffolding
+// -------------------------
+@ui-body-bg:	@body-bg;
+
+// Links
+// -------------------------
+@ui-link-color: @link-color;
+@ui-link-hover-color: @link-hover-color;
+
+// Typography
+// -------------------------
+@ui-font-family-sans-serif: @font-family-sans-serif;
+
+@ui-font-size-base: @font-size-base;
+@ui-font-size-large: @font-size-large;
+@ui-font-size-small: @font-size-small;
+
+@ui-line-height-base:	@line-height-base;
+@ui-line-height-computed: @line-height-computed;
+
+// Iconography
+// -------------------------
+@ui-image-dir: "images";
+@ui-icon-color: #888888;
+
+// Components
+// -------------------------
+@ui-padding-base-vertical:	@padding-base-vertical;
+@ui-padding-base-horizontal:	@padding-base-horizontal;
+
+// Core
+// -------------------------
+@ui-widget-content-border: @ui-gray-light;
+@ui-widget-content-bg: @ui-body-bg;
+@ui-widget-content-color: @ui-gray-dark;
+
+@ui-widget-header-border: @panel-primary-border;
+@ui-widget-header-bg: @panel-primary-heading-bg;
+@ui-widget-header-color: @panel-primary-text;
+@ui-widget-header-link-color: @ui-gray-darker;
+
+@ui-widget-footer-border: @panel-inner-border;
+@ui-widget-footer-bg: @panel-footer-bg;
+
+@ui-widget-overlay-bg: @ui-gray-light; //used for modal dialog overlay
+
+@ui-state-default-border: #cccccc;
+@ui-state-default-bg: @ui-white;
+@ui-state-default-color: @ui-gray-dark;
+@ui-state-default-link-color: @gray;
+
+@ui-state-hover-border: #adadad;
+@ui-state-hover-bg: #ebebeb;
+@ui-state-hover-color: #333333;
+@ui-state-hover-link-color: @ui-state-hover-color;
+
+@ui-state-active-border: @ui-state-hover-border;
+@ui-state-active-bg: @ui-state-hover-bg;
+@ui-state-active-color: @ui-state-hover-color;
+@ui-state-active-link-color: @ui-state-hover-link-color;
+
+@ui-state-alternate-bg: @table-bg-accent; //used for table row striping in jqGrid
+
+@ui-state-highlight-border: #bce8f1;
+@ui-state-highlight-bg: #d9edf7;
+@ui-state-highlight-color: #3a87ad;
+@ui-state-highlight-link-color: #2d6987;
+
+@ui-state-error-border: #eed3d7;
+@ui-state-error-bg: #f2dede;
+@ui-state-error-color: #b94a48;
+@ui-state-error-link-color: #953b39;
+@ui-state-error-text-color: #953b39;
+
+// Buttons
+// -------------------------
+@ui-btn-default-color: @btn-default-color;
+@ui-btn-default-bg: @btn-default-bg;
+@ui-btn-default-bg-highlight: lighten(@btn-default-bg, 10%);
+@ui-btn-default-border: @btn-default-border;
+
+@ui-btn-primary-color: @btn-primary-color;
+@ui-btn-primary-bg: @btn-primary-bg;
+@ui-btn-primary-bg-highlight: lighten(@btn-primary-bg, 10%);
+@ui-btn-primary-border: @btn-primary-border;
+
+@ui-btn-success-color: @btn-success-color;
+@ui-btn-success-bg: @btn-success-bg;
+@ui-btn-success-bg-highlight: lighten(@btn-success-bg, 10%);
+@ui-btn-success-border: @btn-success-border;
+
+@ui-btn-warning-color: @btn-warning-color;
+@ui-btn-warning-bg: @btn-warning-bg;
+@ui-btn-warning-bg-highlight: lighten(@btn-warning-bg, 10%);
+@ui-btn-warning-border: @btn-warning-border;
+
+@ui-btn-danger-color: @btn-danger-color;
+@ui-btn-danger-bg: @btn-danger-bg;
+@ui-btn-danger-bg-highlight: lighten(@btn-danger-bg, 10%);
+@ui-btn-danger-border: @btn-danger-border;
+
+@ui-btn-info-color: @btn-info-color;
+@ui-btn-info-bg: @btn-info-bg;
+@ui-btn-info-bg-highlight: lighten(@btn-info-bg, 10%);
+@ui-btn-info-border: @btn-info-border;
+
+@ui-btn-inverse-color: spin(@btn-default-color, 180);
+@ui-btn-inverse-bg: spin(@btn-default-bg, 180);
+@ui-btn-inverse-bg-highlight:  spin(lighten(@btn-default-bg, 10%), 180);
+@ui-btn-inverse-border: spin(@btn-default-border, 180);
+
+// Menu
+// -------------------------
+@ui-menu-item-a-color: @dropdown-link-color;
+@ui-menu-item-a-border: @dropdown-bg;
+@ui-menu-item-a-bg: @dropdown-bg;
+
+@ui-menu-item-a-focus-color: @dropdown-link-hover-color;
+@ui-menu-item-a-focus-border: @dropdown-link-hover-bg;
+@ui-menu-item-a-focus-bg: @dropdown-link-hover-bg;
+
+@ui-menu-item-a-active-color: @dropdown-link-active-color;
+@ui-menu-item-a-active-border: @dropdown-link-active-bg;
+@ui-menu-item-a-active-bg: @dropdown-link-active-bg;
+
+// Accordion
+// -------------------------
+@ui-accordion-header-font-size: @panel-title-font-size; /*match style to sv-panel-title*/
+
+// Datepicker
+// -------------------------
+@ui-datepicker-border: @ui-btn-primary-border;
+@ui-datepicker-header-bg: @table-bg-hover;
+@ui-datepicker-header-color: @ui-gray;
+@ui-datepicker-today-bg: @ui-brand-info;
+@ui-datepicker-today-color: @ui-white;
+@ui-datepicker-default-color: @ui-gray;
+@ui-datepicker-active-bg: @ui-state-active-bg;
+@ui-datepicker-active-color: @ui-state-active-color;
+@ui-datepicker-highlight-bg: @ui-state-highlight-bg;
+@ui-datepicker-highlight-color: @ui-state-highlight-color;
+@ui-datepicker-hover-bg: @ui-btn-primary-bg;
+@ui-datepicker-hover-color: @ui-btn-primary-color;
+
+// Progress Bar
+// -------------------------
+@ui-progressbar-container-bg: #f5f5f5;
+@ui-progressbar-container-bg-light: lighten(@ui-progressbar-container-bg,1%);
+@ui-progressbar-value-bg: @ui-btn-primary-bg;
+@ui-progressbar-value-color: @ui-btn-primary-color;
+
+// Tabs
+// -------------------------
+@ui-tabs-default-border: @ui-white;
+@ui-tabs-default-color: @ui-link-color;
+@ui-tabs-active-border: #dddddd;
+@ui-tabs-active-bg: @ui-white;
+@ui-tabs-active-color: @ui-gray-dark;
+@ui-tabs-hover-bg: #f5f5f5;
+
+// Tooltip
+// -------------------------
+@ui-tooltip-border: @ui-gray-dark;
+@ui-tooltip-bg: @ui-gray-dark;
+@ui-tooltip-color: @ui-white;
+
+// Forms
+// -------------------------
+@ui-input-border-radius: @input-border-radius;
+
+@ui-form-actions-background: @input-bg;
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+@ui-zindex-tooltip:           @zindex-tooltip;

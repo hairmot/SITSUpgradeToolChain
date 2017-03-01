@@ -1,0 +1,26 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Additional breakpoints for 2 column (based on used column grid width, not necessarily the number of columns on screen)
+
+// Extra small screen / phone
+@screen-xs-min-2-column:              (@screen-xs-min * 2);
+
+// Small screen / tablet
+@screen-sm-min-2-column:              (@screen-sm * 2);
+
+// Medium screen / desktop
+@screen-md-min-2-column:              (@screen-md * 2);
+
+// Large screen / wide desktop
+@screen-lg-min-2-column:              (@screen-lg * 2);
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max-2-column:              (@screen-sm-min-2-column - 1);
+@screen-sm-max-2-column:              (@screen-md-min-2-column - 1);
+@screen-md-max-2-column:              (@screen-lg-min-2-column - 1);
+
+//Tablesaw - breakpoint for stack mode in Tablesaw widget
+@tablesaw-stack-max-2-column:         @screen-xs-max-2-column;
+@tablesaw-stack-min-2-column:         (@tablesaw-stack-max-2-column - 1);

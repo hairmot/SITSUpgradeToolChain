@@ -1,0 +1,147 @@
+// Framework grid generation for Portal Content mode
+
+.float-grid-columns(@class, @multiplier) {
+  .float-grid-col(@class, @multiplier, 1); // kickstart it
+}
+
+.float-grid-col(@class, @multiplier, @index) when (@index = 1) { // initial
+  @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-@{index}";
+  .float-grid-col(@class, @multiplier, (@index + 1), @item);
+}
+.float-grid-col(@class, @multiplier, @index, @list) when (@index =< @grid-columns) { // general
+  @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-@{index}";
+  .float-grid-col(@class, @multiplier, (@index + 1), ~"@{list}, @{item}");
+}
+.float-grid-col(@class, @multiplier, @index, @list) when (@index > @grid-columns) { // terminal
+  @{list} {
+    float: left;
+  }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  .sv-col-@{class}-@{index} {
+    width: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+  .sv-col-@{class}-push-@{index} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+  .sv-col-@{class}-push-0 {
+    left: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+  .sv-col-@{class}-pull-@{index} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+  .sv-col-@{class}-pull-0 {
+    right: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+  .sv-col-@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type, @multiplier: 1) when (@index >= 0) {
+  .sv-portal-@{multiplier}-col {
+    .calc-grid-column(@index, @class, @type);
+  }
+  // next iteration
+  .loop-grid-columns((@index - 1), @class, @type, @multiplier);
+}
+
+// Create grid for specific class (using a breakpoint multiplier)
+.make-grid(@class, @multiplier: 1) {
+  .float-grid-columns(@class, @multiplier);
+  .loop-grid-columns(@grid-columns, @class, width, @multiplier);
+  .loop-grid-columns(@grid-columns, @class, pull, @multiplier);
+  .loop-grid-columns(@grid-columns, @class, push, @multiplier);
+  .loop-grid-columns(@grid-columns, @class, offset, @multiplier);
+}
+
+
+// Reset grid classes from sv.css so they don't interfere when they shouldn't
+
+.reset-grid-columns(@class, @type, @multiplier: 1) when (@type = width) {
+  .col(@index) when (@index = 1) { // initial
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      width: 100%; //assume full width by default (as though the class wasn't there)
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.reset-grid-columns(@class, @type, @multiplier: 1) when (@type = push) {
+  .col(@index) when (@index = 1) { // initial
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-push-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-push-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      left: auto; //assume no push by default (as though the class wasn't there)
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.reset-grid-columns(@class, @type, @multiplier: 1) when (@type = pull) {
+  .col(@index) when (@index = 1) { // initial
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-pull-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-pull-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      right: auto; //assume no pull by default (as though the class wasn't there)
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.reset-grid-columns(@class, @type, @multiplier: 1) when (@type = offset) {
+  .col(@index) when (@index = 1) { // initial
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-offset-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".sv-portal-@{multiplier}-col .sv-col-@{class}-offset-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      margin-left: 0; //assume no offset by default (as though the class wasn't there)
+    }
+  }
+  .col(1); // kickstart it
+}
+
+// Reset grid for specific class (using a breakpoint multiplier)
+.reset-grid(@class, @multiplier: 1) {
+  .reset-grid-columns(@class, width, @multiplier);
+  .reset-grid-columns(@class, pull, @multiplier);
+  .reset-grid-columns(@class, push, @multiplier);
+  .reset-grid-columns(@class, offset, @multiplier);
+}

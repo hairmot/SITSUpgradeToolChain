@@ -1,0 +1,66 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+.button-variant(@color; @background; @border) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:hover,
+  &:focus,
+  &.sv-focus,
+  &:active,
+  &.sv-active,
+  .sv-open > .sv-dropdown-toggle& {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+  }
+  &:active,
+  &.sv-active,
+  .sv-open > .sv-dropdown-toggle& {
+    background-image: none;
+  }
+  &.sv-disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.sv-focus,
+    &:active,
+    &.sv-active {
+      background-color: @background;
+          border-color: @border;
+    }
+  }
+
+  .sv-badge {
+    color: @background;
+    background-color: @color;
+  }
+}
+
+// Button sizes
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  border-radius: @border-radius;
+}
+
+//Calculate button widths for buttons in an sv-btn-container-inline
+.loop-inline-btn-widths(@index, @class) when (@index >= 0) {
+  .inline-btn-width(@index, @class);
+  // next iteration
+  .loop-inline-btn-widths((@index - 1), @class);
+}
+
+.inline-btn-width(@index, @class) when (@index > 0) {
+  .sv-col-@{class}-@{index} {
+    width: percentage((@index / @grid-columns) - (3/100)); //fallback for browsers that do not support calc (just include a 3% gap as lee-way)
+    width: ~"calc("percentage((@index / @grid-columns))~" - "(@grid-gutter-width)~")"; //use CSS calc to determine width minus padding used for spacing
+  }
+}

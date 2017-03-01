@@ -1,0 +1,60 @@
+//
+// Forms in Portal Content mode
+// --------------------------------------------------
+
+
+// Horizontal forms
+//
+// Horizontal forms are built on grid classes and allow you to create forms with
+// labels on the left and inputs on the right.
+
+.sv-portal-2-col {
+  .sv-form-horizontal {
+    // Include override of classes from sv.css (the forms.less file in the bootstrap folder) that will otherwise be used for screen widths between @screen-sm-min and @screen-sm-min-2-column
+    @media (max-width: @screen-xs-max-2-column) {
+      .sv-control-label {
+        text-align: inherit;
+        margin-bottom: 5px;  //should be same as default in sv.css forms.less file
+        padding-top: initial;
+      }
+      
+      .sv-static-text,
+      .sv-checkbox-text,
+      .sv-radio-text {
+        text-align: initial;
+        margin-bottom: initial;
+        padding-top: initial;
+      }
+      
+      .sv-form-btns .sv-btn {
+        margin-bottom:  @padding-base-vertical;        
+      }
+    }
+
+    // Reset spacing and right align labels, but scope to media queries so that
+    // labels on narrow viewports stack the same as a default form example.
+    @media (min-width: @screen-sm-min-2-column) {
+      .sv-control-label,
+      .sv-static-text,
+      .sv-checkbox-text,
+      .sv-radio-text {
+        text-align: right;
+        margin-bottom: 0;
+        padding-top: (@padding-base-vertical + 1); // Default padding plus a border
+      }
+    
+      //button blocks need different spacing on non-xs
+      .sv-form-btns .sv-btn {
+          margin-bottom: 0;
+      }
+    }
+  }
+  
+  .sv-form-pagination, .sv-form-pagination-btn {
+    @media (max-width: @screen-xs-max-2-column) {
+      .sv-pagination-page {
+        display: none; //hide page numbers on xs devices   
+      }
+    }
+  }  
+}

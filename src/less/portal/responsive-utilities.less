@@ -1,0 +1,184 @@
+//
+// Responsive: Utility classes for Portal Content mode
+// --------------------------------------------------
+
+.sv-portal-2-col {
+  //Initialise styles to override anything from the main sv.css stylesheet (so conflicting breakpoints don't cause problems)
+  .sv-visible-xs,
+  .sv-visible-sm,
+  .sv-visible-md,
+  .sv-visible-lg {
+    .responsive-invisibility();
+  }
+
+  .sv-visible-xs-block,
+  .sv-visible-xs-inline,
+  .sv-visible-xs-inline-block,
+  .sv-visible-sm-block,
+  .sv-visible-sm-inline,
+  .sv-visible-sm-inline-block,
+  .sv-visible-md-block,
+  .sv-visible-md-inline,
+  .sv-visible-md-inline-block,
+  .sv-visible-lg-block,
+  .sv-visible-lg-inline,
+  .sv-visible-lg-inline-block {
+    display: none !important;
+  }
+  
+  //Note: We can't use the responsive-visibility mixin as the parent selector incorrectly matches the overall column class (sv-portal...)
+  .sv-hidden-xs,
+  .sv-hidden-sm,
+  .sv-hidden-md,
+  .sv-hidden-lg {
+    display: block !important; //Assumes block, but this could lead to unavoidable display issues in some cases  
+  }
+  table.sv-hidden-xs,
+  table.sv-hidden-sm,
+  table.sv-hidden-md,
+  table.sv-hidden-lg {
+    display: table !important;
+  }
+  tr.sv-hidden-xs,
+  tr.sv-hidden-sm,
+  tr.sv-hidden-md,
+  tr.sv-hidden-lg {
+    display: table-row !important;
+  }
+  th.sv-hidden-xs,
+  td.sv-hidden-xs,
+  th.sv-hidden-sm,
+  td.sv-hidden-sm,
+  th.sv-hidden-md,
+  td.sv-hidden-md,
+  th.sv-hidden-lg,
+  td.sv-hidden-lg {
+    display: table-cell !important;
+  }
+     
+  //Visibility and hidden classes with different breakpoints for Portal Content
+  @media (max-width: @screen-xs-max-2-column) {
+    .sv-visible-xs {
+      display: block !important;      
+    }
+    table.sv-visible-xs {
+      display: table !important;
+    }
+    tr.sv-visible-xs {
+      display: table-row !important;
+    }
+    th.sv-visible-xs,
+    td.sv-visible-xs {
+      display: table-cell !important;
+    }
+    
+    .sv-visible-xs-block {
+      display: block !important;
+    }
+    .sv-visible-xs-inline {
+      display: inline !important;
+    }
+    .sv-visible-xs-inline-block {
+      display: inline-block !important;
+    }
+  }
+
+  @media (min-width: @screen-sm-min-2-column) and (max-width: @screen-sm-max-2-column) {
+    .sv-visible-sm {
+      display: block !important;      
+    }
+    table.sv-visible-sm {
+      display: table !important;
+    }
+    tr.sv-visible-sm {
+      display: table-row !important;
+    }
+    th.sv-visible-sm,
+    td.sv-visible-sm {
+      display: table-cell !important;
+    }
+
+    .sv-visible-sm-block {
+      display: block !important;
+    }
+    .sv-visible-sm-inline {
+      display: inline !important;
+    }
+    .sv-visible-sm-inline-block {
+      display: inline-block !important;
+    }
+  }
+  
+  @media (min-width: @screen-md-min-2-column) and (max-width: @screen-md-max-2-column) {
+    .sv-visible-md {
+      display: block !important;      
+    }
+    table.sv-visible-md {
+      display: table !important;
+    }
+    tr.sv-visible-md {
+      display: table-row !important;
+    }
+    th.sv-visible-md,
+    td.sv-visible-md {
+      display: table-cell !important;
+    }
+    
+    .sv-visible-md-block {
+      display: block !important;
+    }
+    .sv-visible-md-inline {
+      display: inline !important;
+    }
+    .sv-visible-md-inline-block {
+      display: inline-block !important;
+    }
+  }
+
+  @media (min-width: @screen-lg-min-2-column) {
+    .sv-visible-lg {
+      display: block !important;      
+    }
+    table.sv-visible-lg {
+      display: table !important;
+    }
+    tr.sv-visible-lg {
+      display: table-row !important;
+    }
+    th.sv-visible-lg,
+    td.sv-visible-lg {
+      display: table-cell !important;
+    }
+
+    .sv-visible-lg-block {
+      display: block !important;
+    }
+    .sv-visible-lg-inline {
+      display: inline !important;
+    }
+    .sv-visible-lg-inline-block {
+      display: inline-block !important;
+    }
+  }
+
+  .sv-hidden-xs {
+    @media (max-width: @screen-xs-max-2-column) {
+      .responsive-invisibility();
+    }
+  }
+  .sv-hidden-sm {
+    @media (min-width: @screen-sm-min-2-column) and (max-width: @screen-sm-max-2-column) {
+      .responsive-invisibility();
+    }
+  }
+  .sv-hidden-md {
+    @media (min-width: @screen-md-min-2-column) and (max-width: @screen-md-max-2-column) {
+      .responsive-invisibility();
+    }
+  }
+  .sv-hidden-lg {
+    @media (min-width: @screen-lg-min-2-column) {
+      .responsive-invisibility();
+    }
+  }
+}

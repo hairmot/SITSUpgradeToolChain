@@ -1,0 +1,20 @@
+//reset widths for smaller screens - e.g. when using stack mode
+@media (max-width: @screen-xs-max-2-column) {
+  .sv-portal-2-col .sv-table {
+    input.sv-form-control-xs,
+    input.sv-form-control-sm,
+    input.sv-form-control-md,
+    input.sv-form-control-lg {
+      width: 100%;
+    }
+  }
+}
+
+// Handle financial totals lining up
+.sv-financial-container {
+    .sv-financial-total {
+        @media (max-width: @screen-xs-max-2-column) {
+            font-weight: normal;
+        }
+    }
+}

@@ -1,0 +1,814 @@
+/*additional styles for datatables within e:Vision - most come from sv-table (default BootStrap styling)*/
+.sv-datatable{
+  width: 100%;
+}
+
+/*These are styles used by the Datatables plugin throughout e:Vision*/
+div.dataTables_wrapper {
+    overflow: hidden;
+    min-height: 100px;
+}
+
+div.dataTables_length label {
+	font-weight: normal;
+	text-align: left;
+	white-space: nowrap;
+}
+
+div.dataTables_length select {
+	width: 75px;
+	display: inline-block;
+}
+
+div.dataTables_filter {
+	text-align: right;
+	margin-top: 0.5em;
+	margin-right: 0.5em;
+}
+
+div.dataTables_filter label {
+	font-weight: normal;
+	white-space: nowrap;
+	text-align: left;
+}
+
+div.dataTables_filter input {
+	margin-left: 0.5em;
+	display: inline-block;
+	width: auto;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	margin: 0;
+	white-space: nowrap;
+	text-align: right;
+}
+
+div.dataTables_paginate ul.pagination {
+	margin: 2px 0;
+	white-space: nowrap;
+}
+
+@media screen and (max-width: @screen-xs-max) {
+	div.dataTables_wrapper > div.row > div,
+	div.dataTables_length,
+	div.dataTables_filter {
+		text-align: center;
+	}
+}
+
+table.dataTable td,
+table.dataTable th {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+table.dataTable {
+	clear: both;
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
+	max-width: none !important;
+	border-collapse: separate; /* Workaround for Firefox issue 688556 when used with the Responsive plugin for Datatables */
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+	cursor: pointer;
+	position: relative;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: block;
+	font-family: 'Glyphicons Halflings';
+	opacity: 0.5;
+}
+
+table.dataTable thead .sorting_asc:after {
+	content: "\e155"; /* sort-by-attributes */
+}
+table.dataTable thead .sorting_desc:after {
+	content: "\e156"; /* sort-by-attributes-alt */
+}
+div.dataTables_scrollBody table.dataTable thead .sorting:after,
+div.dataTables_scrollBody table.dataTable thead .sorting_asc:after,
+div.dataTables_scrollBody table.dataTable thead .sorting_desc:after {
+	display: none;
+}
+
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+	color: #eee;
+}
+
+table.dataTable thead > tr > th {
+	padding-right: 30px;
+}
+
+table.dataTable th:active {
+	outline: 0;
+}
+
+/* Condensed */
+table.dataTable.sv-table-condensed thead > tr > th {
+	padding-right: 20px;
+}
+
+table.dataTable.sv-table-condensed thead .sorting:after,
+table.dataTable.sv-table-condensed thead .sorting_asc:after,
+table.dataTable.sv-table-condensed thead .sorting_desc:after {
+	top: 6px;
+	right: 6px;
+}
+
+/* Scrolling */
+div.dataTables_scrollHead table {
+	margin-bottom: 0 !important;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+div.dataTables_scrollHead table thead tr:last-child th:first-child,
+div.dataTables_scrollHead table thead tr:last-child td:first-child {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+div.dataTables_scrollBody table {
+	border-top: none;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+div.dataTables_scrollBody tbody tr:first-child th,
+div.dataTables_scrollBody tbody tr:first-child td {
+	border-top: none;
+}
+
+div.dataTables_scrollFoot table {
+	margin-top: 0 !important;
+	border-top: none;
+}
+
+/*used by the Advanced selection list*/
+table.dataTable tr.even.row_selected td,
+table.dataTable tr.odd.row_selected td {
+	background-color: @table-bg-selected;
+	color: @table-color-selected;
+}
+
+/* Frustratingly the border-collapse:collapse used by Bootstrap makes the column
+   width calculations when using scrolling impossible to align columns. We have
+   to use separate
+ */
+table.sv-table-bordered.dataTable {
+	border-collapse: separate !important;
+}
+table.sv-table-bordered.dataTable thead th,
+table.sv-table-bordered.dataTable thead td {
+	border-left-width: 0;
+	border-top-width: 0;
+}
+table.sv-table-bordered.dataTable tbody th,
+table.sv-table-bordered.dataTable tbody td {
+	border-left-width: 0;
+	border-bottom-width: 0;
+}
+table.sv-table-bordered.dataTable tfoot th,
+table.sv-table-bordered.dataTable tfoot td {
+    border-left-width: 0;
+    border-bottom-width: 0;
+}
+table.sv-table-bordered.dataTable th:last-child,
+table.sv-table-bordered.dataTable td:last-child {
+	border-right-width: 0;
+}
+div.dataTables_scrollHead table.sv-table-bordered.dataTable {
+	border-bottom-width: 0;
+}
+
+div.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    width: 50%;
+    height: 60px;
+    margin-left: -50%;
+    margin-top: -30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: @font-size-large;
+    background-color: @body-bg;
+    border-radius: @border-radius-base;
+    .sv-shadow;
+    z-index: @zindex-modal;
+}
+
+/*The following styles are for use by the Responsive functionality within datatables*/
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child a.sv-dt-access,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child a.sv-dt-access {
+  top: 8px;
+  left: 4px;
+  height: 16px;
+  width: 16px;
+  display: block;
+  position: absolute;
+  border: 2px solid white;
+  border-radius: 16px;
+  text-align: center;
+  line-height: 14px;
+  box-shadow: 0 0 3px #444;
+  box-sizing: content-box;
+  background-color: @table-dt-collapse-bg-color;
+  color: @table-dt-collapse-color;
+  text-decoration: none;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child.dataTables_empty a.sv-dt-access,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child.dataTables_empty a.sv-dt-access {
+  display: none;
+}
+a.sv-dt-access {
+  display: none; /*hide by default - other more focussed styles override when we collapse*/
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child a.sv-dt-access,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child a.sv-dt-access {
+  background-color: @table-dt-bg-color;
+  color: @table-dt-color;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.child td a.sv-dt-access {
+  display: none;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child a.sv-dt-access:after,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child a.sv-dt-access:after {
+	margin-left: -5px;
+	content: '+';
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child a.sv-dt-access:after,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child a.sv-dt-access:after {
+	margin-left: -5px;
+	content: '-';
+}
+
+table.dataTable > tbody > tr.child {
+  padding: 0.5em 1em;
+}
+table.dataTable > tbody > tr.child:hover {
+  background: transparent !important;
+}
+table.dataTable > tbody > tr.child ul {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+table.dataTable > tbody > tr.child ul li {
+  border-bottom: 1px solid @table-border-color;
+  padding: 0.5em 0;
+}
+table.dataTable > tbody > tr.child ul li:first-child {
+  padding-top: 0;
+}
+table.dataTable > tbody > tr.child ul li:last-child {
+  border-bottom: none;
+}
+table.dataTable > tbody > tr.child span.dtr-title {
+  display: inline-block;
+  min-width: 75px;
+  font-weight: bold;
+}
+
+/*These are styles used by the Tablesaw plugin throughout e:Vision*/
+/*! Tablesaw - v1.0.5 - 2015-02-19
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2015 Filament Group; Licensed MIT */
+
+//Note: If changing Tablesaw styles within a media query, equivalent changes may need to be made to the sv-portal.css stylesheet
+
+table.tablesaw {
+  empty-cells: show;
+}
+
+/* Structure */
+
+.tablesaw-enhanced .tablesaw-bar .btn {
+  border: 1px solid @btn-default-border;
+  background: none;
+  background-color: @btn-default-bg;
+  color: @btn-default-color;
+  clear: both;
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  border-radius: .25em;
+}
+
+.tablesaw-enhanced .tablesaw-bar .btn:hover {
+  text-decoration: none;
+}
+
+/* Default radio/checkbox styling horizonal controlgroups. */
+
+.tablesaw-bar .btn.btn-small,
+.tablesaw-bar .btn.btn-micro {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  position: relative;
+  top: 0;
+}
+
+/* Column navigation buttons for swipe and columntoggle tables */
+
+.sv-panel .tablesaw-advance {
+  padding-right: .5em;
+}
+
+.tablesaw-advance .btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: .25em;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn {
+  display: inline-block;
+  overflow: hidden;
+  width: 1.8em;
+  height: 1.8em;
+  background-position: 50% 50%;
+  margin-left: .5em;
+  position: relative;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.left:before,
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.right:before,
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.down:before,
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.up:before {
+  content: "\0020";
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.down:before {
+  left: .5em;
+  top: .65em;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid @table-ts-nav-btn-border-color;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.up:before {
+  left: .5em;
+  top: .65em;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid @table-ts-nav-btn-border-color;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.left:before,
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.right:before {
+  top: .45em;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.left:before {
+  left: .6em;
+  border-right: 5px solid @table-ts-nav-btn-border-color;
+}
+
+.tablesaw-bar .tablesaw-advance a.tablesaw-nav-btn.right:before {
+  left: .7em;
+  border-left: 5px solid @table-ts-nav-btn-border-color;
+}
+
+.tablesaw-advance a.tablesaw-nav-btn.disabled {
+  opacity: .25;
+  filter: alpha(opacity=25);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Table Toolbar */
+
+.tablesaw-bar {
+  clear: both;
+}
+
+.tablesaw-toolbar {
+  float: left;
+}
+
+.tablesaw-toolbar label {
+  padding: .5em 0;
+  clear: both;
+  display: block;
+  margin-right: .5em;
+  text-transform: uppercase;
+}
+
+.tablesaw-bar .btn,
+.tablesaw-enhanced .tablesaw-bar .btn {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.tablesaw-bar .tablesaw-toolbar .btn {
+  margin-left: .4em;
+  margin-top: 0;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  padding-left: .3em;
+}
+
+.tablesaw-toolbar ~ table {
+  clear: both;
+}
+
+.tablesaw-stack td .tablesaw-cell-label,
+.tablesaw-stack th .tablesaw-cell-label {
+  display: none;
+}
+
+/* Mobile first styles: Begin with the stacked presentation at narrow widths */
+
+@media only all {
+  /* Show the table cells as a block level element */
+  .tablesaw-stack td,
+  .tablesaw-stack th {
+    text-align: left;
+    display: block;
+    
+    &.sv-text-right { //allow overriding of text alignment for things like financial values
+      text-align: right;
+    }
+    &.sv-text-center {
+      text-align: center;
+    }
+    &.sv-text-justify {
+      text-align: justify;
+    }
+  }
+
+  .tablesaw-stack tr {
+    clear: both;
+    display: table-row;
+  }
+
+  /* Make the label elements a percentage width */
+
+  .tablesaw-stack td .tablesaw-cell-label,
+  .tablesaw-stack th .tablesaw-cell-label {
+    display: block;
+    width: 100%;
+    margin-top: @padding-base-vertical;
+    margin-bottom: @padding-base-vertical;
+  }
+
+  /* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */
+
+  .tablesaw-stack th .tablesaw-cell-label-top,
+  .tablesaw-stack td .tablesaw-cell-label-top {
+    display: block;
+    width: 100%;
+    font-weight: normal;
+    margin-top: @padding-large-vertical;
+  }
+
+  .tablesaw-cell-label {
+    display: block;
+  }
+
+  /* Avoid double strokes when stacked */
+
+  .tablesaw-stack tbody th.group {
+    margin-top: -1px;
+  }
+
+  /* Avoid double strokes when stacked */
+
+  .tablesaw-stack th.group b.tablesaw-cell-label {
+    display: none !important;
+  }
+}
+
+@media (max-width: @tablesaw-stack-max) {
+  .tablesaw-stack thead td,
+  .tablesaw-stack thead th {
+    display: none;
+  }
+
+  .tablesaw-stack tbody tr td,
+  .tablesaw-stack tbody tr th {
+    clear: left;
+    float: left;
+    width: 100%;
+    padding-top: 0;
+    padding-left: @grid-gutter-width / 2; //match stacked form 
+    padding-right: @grid-gutter-width / 2; //match stacked form
+    &.sv-text-right,
+    &.sv-text-center,
+    &.sv-text-justify {
+      text-align: left !important; //always force left align when stacked   
+    }
+  }
+
+  .tablesaw-cell-label {
+    vertical-align: top;
+  }
+
+  .tablesaw-cell-content {
+    display: block;
+    width: 100%;
+    
+    //Override certain input group styles to allow content to fill up cell
+    .sv-input-group-table {
+      display: block;
+    }
+  }
+  
+  //Override certain inline validation styles to allow content to fill up cell
+  .sv-table-has-feedback .tablesaw-cell-content .sv-form-group {
+    display: block;
+  }
+
+  .tablesaw-stack td:empty,
+  .tablesaw-stack th:empty {
+    display: none;
+  }
+  
+  .tablesaw-stack tbody tr td {
+    border-top: none;   
+  }
+  
+  /* Table rows have a gray bottom stroke by default */
+  .tablesaw-stack tbody tr {
+    border-bottom: 1px solid @table-border-color;
+  }
+  
+  .tablesaw-stack tbody tr:last-child {
+    border-bottom: none;
+  } 
+}
+
+/* Media query to show as a standard table sm breakpoint and larger */
+
+@media (min-width: @tablesaw-stack-min) {
+  .tablesaw-stack tr {
+    display: table-row;
+  }
+
+  /* Show the table header rows */
+
+  .tablesaw-stack td,
+  .tablesaw-stack th,
+  .tablesaw-stack thead td,
+  .tablesaw-stack thead th {
+    display: table-cell;
+    margin: 0;
+  }
+
+  /* Hide the labels in each cell */
+
+  .tablesaw-stack td .tablesaw-cell-label,
+  .tablesaw-stack th .tablesaw-cell-label {
+    display: none !important;
+  }
+}
+
+.tablesaw-fix-persist {
+  table-layout: fixed;
+}
+
+@media only all {
+  /* Unchecked manually: Always hide */
+
+  .tablesaw-swipe th.tablesaw-cell-hidden,
+  .tablesaw-swipe td.tablesaw-cell-hidden {
+    display: none;
+  }
+}
+
+.btn.tablesaw-columntoggle-btn span {
+  text-indent: -9999px;
+  display: inline-block;
+}
+
+.tablesaw-columntoggle-btnwrap {
+  position: relative;
+  /* for dialog positioning */
+}
+
+.tablesaw-columntoggle-btnwrap .dialog-content {
+  padding: .5em;
+}
+
+.tablesaw-columntoggle tbody td {
+  line-height: 1.5;
+}
+
+.tablesaw-columntoggle-popup {
+  display: none;
+  z-index: @zindex-tablesaw-popup;
+}
+
+.ui-front .tablesaw-columntoggle-popup {
+  z-index: @zindex-tablesaw-popup-dialog; //override z-index when showing popup within a dialog   
+}
+
+.tablesaw-columntoggle-btnwrap.visible .tablesaw-columntoggle-popup {
+  display: block;
+  position: absolute;
+  top: 2em;
+  right: 0;
+  background-color: #fff;
+  padding: .5em .8em;
+  border: 1px solid @btn-default-border;
+  .sv-shadow;
+  border-radius: .2em;
+}
+
+.tablesaw-columntoggle-popup fieldset {
+  margin: 0;
+}
+
+/* Hide all prioritized columns by default */
+
+@media only all {
+  .tablesaw-columntoggle th.tablesaw-priority-6,
+  .tablesaw-columntoggle td.tablesaw-priority-6,
+  .tablesaw-columntoggle th.tablesaw-priority-5,
+  .tablesaw-columntoggle td.tablesaw-priority-5,
+  .tablesaw-columntoggle th.tablesaw-priority-4,
+  .tablesaw-columntoggle td.tablesaw-priority-4,
+  .tablesaw-columntoggle th.tablesaw-priority-3,
+  .tablesaw-columntoggle td.tablesaw-priority-3,
+  .tablesaw-columntoggle th.tablesaw-priority-2,
+  .tablesaw-columntoggle td.tablesaw-priority-2 {
+    display: none;
+  }
+}
+
+/* Preset breakpoints if "" class added to table */
+/* Show priority 1 from xs upwards, 2 from sm upwards, 3 from md upwards and 4 from lg upwards (5 and 6 are not used by Tribal)*/
+
+@media (min-width: @screen-sm-min) {
+  .tablesaw-columntoggle th.tablesaw-priority-2,
+  .tablesaw-columntoggle td.tablesaw-priority-2 {
+    display: table-cell;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .tablesaw-columntoggle th.tablesaw-priority-3,
+  .tablesaw-columntoggle td.tablesaw-priority-3 {
+    display: table-cell;
+  }
+
+  .tablesaw-columntoggle tbody td {
+    line-height: 2;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .tablesaw-columntoggle th.tablesaw-priority-4,
+  .tablesaw-columntoggle td.tablesaw-priority-4 {
+    display: table-cell;
+  }
+}
+
+@media only all {
+  /* Unchecked manually: Always hide */
+
+  .tablesaw-columntoggle th.tablesaw-cell-hidden,
+  .tablesaw-columntoggle td.tablesaw-cell-hidden {
+    display: none;
+  }
+
+  /* Checked manually: Always show */
+
+  .tablesaw-columntoggle th.tablesaw-cell-visible,
+  .tablesaw-columntoggle td.tablesaw-cell-visible {
+    display: table-cell;
+  }
+}
+
+.tablesaw-columntoggle-popup .btn-group > label {
+  display: block;
+  padding: .2em 0;
+  white-space: nowrap;
+}
+
+.tablesaw-columntoggle-popup .btn-group > label input {
+  margin-right: .8em;
+}
+
+.tablesaw-sortable,
+.tablesaw-sortable thead,
+.tablesaw-sortable thead tr,
+.tablesaw-sortable thead tr th {
+  position: relative;
+}
+
+.tablesaw-sortable thead tr th {
+  padding-right: 1.6em;
+  vertical-align: top;
+}
+
+.tablesaw-sortable th.tablesaw-sortable-head {
+  cursor: pointer;
+}
+
+.tablesaw-sortable th.tablesaw-sortable-head:active {
+  outline: 0;
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending:after,
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending:after {
+  width: 7px;
+  height: 10px;
+  content: "\0020";
+  position: absolute;
+  right: 1em;
+  font-family: 'Glyphicons Halflings';
+  opacity: 0.5;
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending:after {
+  content: "\e155"; /* sort-by-attributes */
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending:after {
+  content: "\e156";
+}
+
+.tablesaw-sortable .not-applicable:after {
+  content: "--";
+  display: block;
+}
+
+.tablesaw-sortable .not-applicable span {
+  display: none;
+}
+
+.tablesaw-advance {
+  float: right;
+}
+
+.tablesaw-advance.minimap {
+  margin-right: .4em;
+}
+
+.tablesaw-advance-dots {
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tablesaw-advance-dots li {
+  display: table-cell;
+  margin: 0;
+  padding: .4em .2em;
+}
+
+.tablesaw-advance-dots li i {
+  width: .3em;
+  height: .3em;
+  background: @table-ts-minimap-bg-color;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.tablesaw-advance-dots li.tablesaw-advance-dots-hide i {
+  background: @table-ts-minimap-disabled-bg-color;
+}

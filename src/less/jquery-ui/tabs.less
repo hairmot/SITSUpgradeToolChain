@@ -1,0 +1,134 @@
+/*jQuery UI tabs*/
+.ui-tabs { 
+	position: relative; 	/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	border: 0; 
+	.ui-border-radius(0);
+	.ui-tabs-nav { 
+		margin-bottom: 5px;
+		border: solid @ui-tabs-active-border;
+		border-width: 0 0 1px 0;
+		.ui-border-radius( 0 );
+		background: none;
+	}
+	.ui-tabs-nav li { 
+		position: relative;
+		top: 0;
+		float: left;
+		margin-right: 2px;
+		margin-bottom: -1px;
+		border: 0;
+		list-style: none;
+		white-space: nowrap;
+		background: none;
+	}
+}
+
+.ui-tabs-nav .ui-state-default{
+	border: 0;
+	.ui-box-shadow( none );
+}
+.ui-tabs {
+	.ui-tabs-nav {
+		li a {
+			float: left;
+			border: 1px solid @ui-tabs-default-border;
+			border-bottom: 1px solid @ui-tabs-active-border;
+			#ui-border-radius > .border( 4px, 4px, 0, 0 );
+			padding: 8px 12px;
+			font-weight: normal;
+			text-decoration: none;
+			outline: none;
+			color: @ui-tabs-default-color;
+			background: none;
+			&:hover{
+				border: 1px solid @ui-tabs-hover-bg;
+				border-bottom: 1px solid @ui-tabs-active-border;
+				background-color: @ui-tabs-hover-bg;
+			}
+		}
+		li.ui-tabs-active a {
+			border: 1px solid @ui-tabs-active-border;
+			border-bottom: 1px solid @ui-tabs-default-border;
+			background-color: @ui-tabs-active-bg;
+			color: @ui-tabs-active-color;
+		}
+		li.ui-tabs-active:hover {
+			background: @ui-tabs-active-bg;
+			cursor: default;
+		}
+		li.ui-tabs-active a,
+		li.ui-state-disabled a,
+		li.ui-tabs-loading a {
+			cursor: default;
+		}
+	}
+	/* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+	.ui-tabs-panel {
+		display: block;
+		margin: 1em 0;
+		border: 0;
+		.ui-border-radius(0);
+		padding: 1px 0;
+		background: none;
+	}
+	.ui-tabs-hide {
+		display: none !important;
+	}
+	.ui-tabs-nav li {
+		filter:none;
+	}
+}
+
+/* Added for auto-sizing tabs */
+div.ui-tabs-autosize ul.ui-tabs-nav li {
+    outline: none;
+    cursor: pointer; 
+    a.ui-tabs-anchor.ui-tabs-autosize {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        outline: none;
+    }
+}
+
+/* Added for self-closing tabs */
+div.ui-tabs-canclose ul.ui-tabs-nav li {
+    .ui-icon-close { 
+        position: absolute; 
+        top: 8px;
+        right: 8px;
+        cursor: pointer; 
+    }
+    a.ui-tabs-anchor.ui-tabs-canclose {
+        padding-right: 22px;
+    }    
+}
+
+/* Added for scrolling tabs */
+div.ui-tabs-scroll-tabs {
+    position: relative;
+}
+div.ui-tabs-scroll-wrap {
+    overflow: hidden;
+    margin-left: 20px;
+    margin-right: 20px;
+    .ui-tabs-scroll-left {
+        position: absolute;
+        top: 5px;
+        left: -5px;
+        padding: 5px;
+        cursor: pointer;        
+        &.sv-disabled {
+           color: @text-muted;
+        }
+    }
+    .ui-tabs-scroll-right {
+        position: absolute;
+        top: 5px;
+        right: -5px;
+        padding: 5px;
+        cursor: pointer;        
+        &.sv-disabled {
+           color: @text-muted;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+node_modules/
+.vscode/
+.git/
+dist/uol
+dist/non_minified/images

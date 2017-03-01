@@ -1,0 +1,43 @@
+// Panels
+
+.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
+  border-color: @border;
+
+  & > .sv-panel-heading {
+    color: @heading-text-color;
+    background-color: @heading-bg-color;
+    border-color: @heading-border;
+
+    + .sv-panel-collapse > .sv-panel-body {
+      border-top-color: @border;
+    }
+    .sv-badge {
+      color: @heading-bg-color;
+      background-color: @heading-text-color;
+    }
+  }
+  
+  &.sv-panel-collapsible > .sv-panel-heading {    
+    &:hover,
+    &:focus,
+    &.sv-focus {
+      background-color: darken(@heading-bg-color, 10%);
+      border-color: darken(@heading-border, 12%);
+    }
+  }
+  & > .sv-panel-footer {
+    + .sv-panel-collapse > .sv-panel-body {
+      border-bottom-color: @border;
+    }
+  }
+}
+
+.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border; @body-text-color; @body-bg-color) {
+  .panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border);
+  
+  //include styling for the panel body (when used - e.g. tables don't use it)
+  & > .sv-panel-body {
+    color: @body-text-color;
+    background-color: @body-bg-color;
+  }
+}
