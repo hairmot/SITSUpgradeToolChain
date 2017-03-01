@@ -1,12 +1,17 @@
-## Synopsis
+## Overview
 
 This repository will provide a developer with everything necessary to develop, compile and minify the three sits UI frameworks.
 
-Whilst this toolchain is running, changes to the component .less files will be monitored. On changes, they will be compiled, minified and output to the dist directory.
+Whilst this toolchain is running, changes to the component .less files will be monitored. On changes, they will be compiled, optionally minified and output to the dist directory. They will also be refreshed in the proxied web session if the proxy is running.
 
 ## Using the tool
 
-To run this tool chain, use the command "npm run start". This will run a proxy of the dev web server but inject your local changes. No other users of the system will be affected.
+There are several different uses listed below:
+
+- "npm run dev". This will run a proxy of the dev web server and inject your compiled resource files.
+- "npm run dev-minify". This will run a proxy of the dev web server and inject your MINIFIED compiled resource files.
+- "npm run build". This will compile the resouce files to the dist folder.
+- "npm run build-minify". This will compile and minify resource files to the dist folder.
 
 ## Installation
 

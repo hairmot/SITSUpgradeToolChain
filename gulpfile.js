@@ -59,7 +59,7 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('less_compile', function() {
-	gulp.src('./src/*.less')
+	return gulp.src('./src/*.less')
 	.pipe(less(
 				{
 					paths:[path.join('./src', 'less', 'includes')], 
@@ -67,8 +67,16 @@ gulp.task('less_compile', function() {
 				}
 		)
 	)
-	.pipe(gulp.dest('./dist/css/'));
-  reload();
+  .pipe(gulp.dest('./dist/css/'));
+ 
+});
+
+gulp.task('less_minify_complete', ['less_minify'], function() {
+  reload("*.css");
+});
+
+gulp.task('less_compile_complete', ['less_compile'], function() {
+  reload("*.css");
 });
 
 gulp.task('less_minify', function() {
@@ -81,21 +89,26 @@ gulp.task('less_minify', function() {
 		)
 	)
 	.pipe(minify({keepSpecialComments : 0}))	
-	.pipe(gulp.dest('./dist/css/'));	
+  .pipe(gulp.dest('./dist/css/'));  	
+  
 });
 
 gulp.task('watch', function() {
-	gulp.watch('src/uol/**/*.less', ['less_compile']); 
+	gulp.watch('src/uol/**/*.less', ['less_compile_complete']); 
 });
 
 gulp.task('watch_minify', function() {
-	gulp.watch('src/uol/**/*.less', ['less_minify']); 
+	gulp.watch('src/uol/**/*.less', ['less_minify_complete']); 
 });
 
-gulp.task('default', ['watch', 'less_compile', 'browserSync']);
+gulp.task('default', ['watch', 'less_compile_complete', 'browserSync']);
 
-gulp.task('build', ['watch_minify','less_minify', 'browserSync']);
+gulp.task('default-minify', ['watch_minify','less_minify_complete', 'browserSync']);
 
 gulp.task('minify', function () {
   flags.minify = true;
 });
+
+gulp.task('build', ['less_compile']);
+
+gulp.task('build-minify', ['less_minify']);

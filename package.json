@@ -4,8 +4,10 @@
   "description": "Local CSS/LESS development toolchain for sits frameworks",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "start-minify": "gulp minify build"
+    "build": "gulp build",
+    "build-minify": "gulp build-minify", 
+    "dev": "gulp",
+    "dev-minify": "gulp minify default-minify"
   },
   "author": "Pete Colley @ UoL",
   "license": "",
@@ -18,5 +20,6 @@
     "less-plugin-autoprefix": "^1.5.1",
     "path": "^0.12.7",
     "run-sequence": "^1.2.2"
-  }
+  },
+  "devDependencies": {}
 }
