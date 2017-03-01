@@ -28,12 +28,14 @@ gulp.task('browserSync', function() {
         // Inject Local CSS at the end of HEAD
         match: /<\/head>/i,
         fn: function(req, res, match) {
-
-          //bring in all css in directory
-          localCssAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/css/').map(css => 
-              '<link rel="stylesheet" type="text/css" href="'  + gulpConfig.localPath + '/css/' + css + '"/>'
-            ).join('');
-
+          var localCssAssets = '';
+          if(fs.existsSync(__dirname + '/' + gulpConfig.localPath + '/css/'))
+          {
+            //bring in all css in directory
+            localCssAssets += fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/css/').map(css => 
+                '<link rel="stylesheet" type="text/css" href="'  + gulpConfig.localPath + '/css/' + css + '"/>'
+              ).join('');
+          }
           //disable all old css assets
           localCssAssets += '<script>$(document).ready(function() {$("' + gulpConfig.disableCss.map(link => 'link[href=\'' + link + '\']').join(',') + '").prop(\'disabled\', true);});</script>';
           return localCssAssets + match;
@@ -43,9 +45,13 @@ gulp.task('browserSync', function() {
         // Inject Local JS at the end of BODY
         match: /<\/body>/i,
         fn: function(req, res, match) {
-           localJsAssets = fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/js/').map(js => 
-              '<script type="text/javascript" src="'  + gulpConfig.localPath + '/js/' + js + '"></script>'
-            ).join('');
+          var localJsAssets = '';
+          if(fs.existsSync(__dirname + '/' + gulpConfig.localPath + '/js/'))
+          {
+            localJsAssets += fs.readdirSync(__dirname + '/' + gulpConfig.localPath + '/js/').map(js => 
+                '<script type="text/javascript" src="'  + gulpConfig.localPath + '/js/' + js + '"></script>'
+              ).join('');
+          }
           return localJsAssets + match;
         }
       }
